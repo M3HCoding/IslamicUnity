@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hajj Guide - Complete Pilgrimage Information</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Scheherazade+New:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1a5d1a;
+            --secondary: #d4af37;
+            --accent: #8e6c3a;
+            --light: #f8f5e9;
+            --dark: #0d2c0d;
+            --text: #333;
+        }
+        
+        body {
+            font-family: 'Noto Sans', sans-serif;
+            background-color: var(--light);
+            color: var(--text);
+            line-height: 1.6;
+            background-image: linear-gradient(to bottom, rgba(248, 245, 233, 0.9), rgba(248, 245, 233, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f5e9"/><path d="M0 50 Q 25 25, 50 50 T 100 50" stroke="%23d4af3722" fill="none" stroke-width="1"/></svg>');
+            background-size: 300px;
+        }
+        
+        .arabic {
+            font-family: 'Scheherazade New', serif;
+            font-weight: 700;
+            direction: rtl;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, var(--dark), var(--primary));
+            color: white;
+            padding: 1.5rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--secondary);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon {
+            font-size: 2.5rem;
+            color: var(--secondary);
+        }
+        
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+        
+        .logo-text span {
+            color: var(--secondary);
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(rgba(26, 93, 26, 0.8), rgba(13, 44, 13, 0.9)), url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200"><circle cx="100" cy="100" r="80" fill="none" stroke="%23d4af3744" stroke-width="2"/><circle cx="100" cy="100" r="60" fill="none" stroke="%23d4af3744" stroke-width="2"/><circle cx="100" cy="100" r="40" fill="none" stroke="%23d4af3744" stroke-width="2"/></svg>');
+            color: white;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 3rem;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin: 2rem 0;
+            color: var(--primary);
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .section-title::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+        
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-bottom: 3rem;
+        }
+        
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-header {
+            background: linear-gradient(to right, var(--primary), var(--dark));
+            color: white;
+            padding: 1.5rem;
+            position: relative;
+        }
+        
+        .card-header i {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2.5rem;
+            opacity: 0.3;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .card-body ul {
+            padding-left: 20px;
+            margin: 1rem 0;
+        }
+        
+        .card-body li {
+            margin-bottom: 0.8rem;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .card-body li::before {
+            content: "•";
+            color: var(--secondary);
+            font-size: 1.5rem;
+            position: absolute;
+            left: 0;
+            top: -5px;
+        }
+        
+        .step-list {
+            counter-reset: step-counter;
+            padding-left: 0;
+        }
+        
+        .step-list li {
+            counter-increment: step-counter;
+            list-style: none;
+            margin-bottom: 1.5rem;
+            padding-left: 50px;
+            position: relative;
+        }
+        
+        .step-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 36px;
+            height: 36px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .contact-box {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            margin: 2rem auto 3rem;
+            max-width: 800px;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 1.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: rgba(26, 93, 26, 0.05);
+            border-radius: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .contact-item:hover {
+            background: rgba(26, 93, 26, 0.1);
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+        
+        .resources {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            margin: 10px;
+            transition: all 0.3s ease;
+            border: 2px solid var(--primary);
+            box-shadow: 0 4px 10px rgba(26, 93, 26, 0.2);
+        }
+        
+        .btn:hover {
+            background: var(--dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(26, 93, 26, 0.3);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
+        .quote {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-left: 5px solid var(--secondary);
+        }
+        
+        .quote p {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: var(--dark);
+        }
+        
+        .quote .arabic {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+        
+        footer {
+            background: linear-gradient(to right, var(--dark), var(--primary));
+            color: white;
+            padding: 2rem 0;
+            text-align: center;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+        }
+        
+        .app-badge {
+            display: flex;
+            gap: 15px;
+            margin: 1rem 0;
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 10px 20px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: background 0.3s ease;
+        }
+        
+        .badge:hover {
+            background: rgba(255, 255, 255, 0.25);
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .app-badge {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-kaaba"></i>
+                    </div>
+                    <div class="logo-text">
+                        Hajj<span>Guide</span>
+                    </div>
+                </div>
+                <div class="app-badge">
+                    <div class="badge">
+                        <i class="fab fa-apple"></i>
+                        <span>Download on App Store</span>
+                    </div>
+                    <div class="badge">
+                        <i class="fab fa-google-play"></i>
+                        <span>Get it on Google Play</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Complete Guide to Hajj Pilgrimage</h1>
+            <p>Your comprehensive resource for performing Hajj - one of the five pillars of Islam. Learn about the rituals, requirements, and procedures to make your pilgrimage a spiritually fulfilling experience.</p>
+            <a href="#" class="btn">Download Our App</a>
+            <a href="#" class="btn btn-secondary">Learn More</a>
+        </div>
+    </section>
+
+    <div class="container">
+        <section class="introduction">
+            <h2 class="section-title">Introduction to Hajj</h2>
+            <div class="card">
+                <div class="card-body">
+                    <p>Hajj is the annual Islamic pilgrimage to Mecca, Saudi Arabia, and is a mandatory religious duty for Muslims that must be carried out at least once in their lifetime by all adult Muslims who are physically and financially capable.</p>
+                    <p>It is one of the <strong>Five Pillars of Islam</strong> and demonstrates the solidarity of the Muslim people, and their submission to Allah (God).</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="general-info">
+            <h2 class="section-title">General Information</h2>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Hajj Timeline & Rituals</h3>
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <div class="card-body">
+                    <p>Hajj occurs from the 8th to the 12th day of Dhu al-Hijjah, the last month of the Islamic calendar. Muslims from around the world gather in Mecca to perform a series of rituals:</p>
+                    <ul>
+                        <li><strong>Tawaf</strong>: Circling the Kaaba seven times in a counter-clockwise direction.</li>
+                        <li><strong>Sa'i</strong>: Walking seven times between the hills of Safa and Marwah.</li>
+                        <li><strong>Wuquf</strong>: Standing in prayer on the plains of Arafat from noon to sunset.</li>
+                        <li><strong>Ramy al-Jamarat</strong>: Stoning the devil in Mina.</li>
+                        <li><strong>Eid al-Adha</strong>: The Festival of Sacrifice.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section class="requirements">
+            <h2 class="section-title">Requirements for Hajj</h2>
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Essential Requirements</h3>
+                        <i class="fas fa-passport"></i>
+                    </div>
+                    <div class="card-body">
+                        <p>To perform Hajj, pilgrims must meet specific requirements:</p>
+                        <ul>
+                            <li>Be a Muslim (Hajj is only for followers of Islam)</li>
+                            <li>Be of sound mind and mature (children must be accompanied)</li>
+                            <li>Be physically and financially capable</li>
+                            <li>Have necessary travel permissions</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Documentation</h3>
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="card-body">
+                        <ul>
+                            <li><strong>Valid Passport</strong>: Ensure passport has at least six months validity</li>
+                            <li><strong>Hajj Visa</strong>: Special visa for pilgrimage</li>
+                            <li><strong>Vaccination Certificates</strong>: Proof of required vaccinations</li>
+                            <li><strong>Mahram Documentation</strong>: For women under 45 traveling with male guardian</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Health Requirements</h3>
+                        <i class="fas fa-syringe"></i>
+                    </div>
+                    <div class="card-body">
+                        <p>Pilgrims must complete required vaccinations:</p>
+                        <ul>
+                            <li>Meningitis (ACWY)</li>
+                            <li>COVID-19 (with booster if required)</li>
+                            <li>Seasonal influenza</li>
+                            <li>Polio (if coming from endemic countries)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="procedures">
+            <h2 class="section-title">Hajj Procedures</h2>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Step-by-Step Guide</h3>
+                    <i class="fas fa-walking"></i>
+                </div>
+                <div class="card-body">
+                    <ol class="step-list">
+                        <li>
+                            <strong>Apply for a Visa</strong>
+                            <p>Pilgrims must apply for a Hajj visa through the Saudi consulate or authorized travel agents at least 3-4 months before Hajj season.</p>
+                        </li>
+                        <li>
+                            <strong>Book Travel and Accommodation</strong>
+                            <p>Arrange flights, accommodation, and transport through an authorized Hajj travel agency approved by Saudi authorities.</p>
+                        </li>
+                        <li>
+                            <strong>Prepare Spiritually and Physically</strong>
+                            <p>Learn the rituals, make necessary preparations, and enter the state of Ihram at designated Miqat points.</p>
+                        </li>
+                        <li>
+                            <strong>Perform Hajj Rituals</strong>
+                            <p>Complete the sequence of rituals: Ihram, Tawaf, Sa'i, Wuquf at Arafat, Muzdalifah overnight stay, Ramy al-Jamarat, sacrifice, hair cutting, and farewell Tawaf.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <div class="quote">
+            <p class="arabic">لَبَّيْكَ اللَّهُمَّ لَبَّيْكَ، لَبَّيْكَ لاَ شَرِيكَ لَكَ لَبَّيْكَ، إِنَّ الْحَمْدَ، وَالنِّعْمَةَ، لَكَ وَالْمُلْكَ، لاَ شَرِيكَ لَكَ</p>
+            <p>"Here I am, O Allah, here I am. Here I am, You have no partner, here I am. Verily all praise and blessings are Yours, and all sovereignty. You have no partner."</p>
+        </div>
+
+        <section class="contact">
+            <h2 class="section-title">Contact Information</h2>
+            <div class="contact-box">
+                <h3>Ministry of Hajj and Umrah</h3>
+                <p>For official information and assistance regarding Hajj and Umrah</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div>
+                            <h4>Website</h4>
+                            <a href="https://haj.gov.sa" style="color: var(--primary);">haj.gov.sa</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@haj.gov.sa</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+966 123 456789</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Address</h4>
+                            <p>Mecca, Saudi Arabia</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="resources">
+            <h2 class="section-title">Official Resources</h2>
+            <p>Access official guides and documents for your Hajj journey</p>
+            <div class="btn-container">
+                <a href="#" class="btn"><i class="fas fa-book"></i> Official Hajj Guide</a>
+                <a href="#" class="btn"><i class="fas fa-file-pdf"></i> Saudi Vision 2030 - Hajj Program</a>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">
+                    <div class="logo-icon">
+                        <i class="fas fa-kaaba"></i>
+                    </div>
+                    <div class="logo-text">
+                        Hajj<span>Guide</span>
+                    </div>
+                </div>
+                <p>Your trusted companion for the sacred journey of Hajj</p>
+                <p>&copy; 2023 HajjGuide App. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
