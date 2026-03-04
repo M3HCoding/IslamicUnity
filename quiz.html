@@ -3,434 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
-    <title>Quranic Quiz · 2000+ · Islamic Unity</title>
+    <title>Islamic Quiz · 200+ Q · Islamic Unity</title>
     <!-- Font Awesome 6 (free) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <!-- Google Font: Inter & Amiri for Arabic/Urdu -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        /* light theme (default) */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', sans-serif;
             background: #d9e8de;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: flex-start;
-            min-height: 100vh;
-            padding: 12px 0 20px;
-            transition: background 0.2s, color 0.2s;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh; padding: 12px 0 20px; transition: 0.2s;
         }
+        body.dark-theme { background: #1a2e24; }
+        body.rtl { direction: rtl; font-family: 'Amiri', 'Inter', serif; }
+        body.rtl .option-btn i { transform: scaleX(-1); }
 
-        body.dark-theme {
-            background: #1a2e24;
-        }
-
-        body.rtl {
-            direction: rtl;
-            font-family: 'Amiri', 'Inter', serif;
-        }
-
-        body.rtl .option-btn i {
-            transform: scaleX(-1);
-        }
-
-        /* main mobile card */
         .phone-frame {
-            max-width: 420px;
-            width: 100%;
-            background-color: #ffffff;
+            max-width: 420px; width: 100%; background: white;
             border-radius: 32px 32px 24px 24px;
-            box-shadow: 0 10px 30px rgba(0, 40, 10, 0.15);
-            overflow: hidden;
-            margin: 8px 12px;
-            transition: background 0.2s, color 0.2s;
+            box-shadow: 0 10px 30px rgba(0,40,10,0.15); overflow: hidden;
+            margin: 8px 12px; transition: 0.2s;
         }
+        .dark-theme .phone-frame { background: #263f30; color: #e2f0e6; box-shadow: 0 10px 20px rgba(0,0,0,0.5); }
 
-        .dark-theme .phone-frame {
-            background-color: #263f30;
-            color: #e2f0e6;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
-        }
-
-        /* header with gradient */
         .app-header {
             background: linear-gradient(145deg, #1b5e3f, #2a7a4b);
-            color: white;
-            padding: 16px 20px 12px 20px;
-            transition: background 0.2s;
+            color: white; padding: 16px 20px 12px;
         }
-
-        .dark-theme .app-header {
-            background: linear-gradient(145deg, #0f3d28, #1e5737);
-        }
-
+        .dark-theme .app-header { background: linear-gradient(145deg, #0f3d28, #1e5737); }
         .app-header h2 {
-            font-size: 26px;
-            font-weight: 700;
-            letter-spacing: -0.5px;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
+            font-size: 26px; font-weight: 700; margin-bottom: 6px;
+            display: flex; align-items: center; gap: 10px;
         }
-
-        .app-header h2 i {
-            font-size: 30px;
-            color: #f9cf6b;
-        }
-
+        .app-header h2 i { font-size: 30px; color: #f9cf6b; }
         .app-header p {
-            font-size: 15px;
-            opacity: 0.95;
-            font-weight: 500;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: rgba(255,255,255,0.15);
-            padding: 8px 14px;
-            border-radius: 40px;
-            margin-top: 8px;
+            font-size: 15px; opacity: 0.95; font-weight: 500;
+            display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.15); padding: 8px 14px;
+            border-radius: 40px; margin-top: 8px;
         }
 
-        /* controls: language + theme */
         .controls-bar {
-            background: white;
-            padding: 8px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #c8e0d2;
-            transition: background 0.2s;
+            background: white; padding: 8px 16px;
+            display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid #c8e0d2;
         }
-
-        .dark-theme .controls-bar {
-            background: #1f3b29;
-            border-bottom: 1px solid #3c654a;
-        }
+        .dark-theme .controls-bar { background: #1f3b29; border-bottom-color: #3c654a; }
 
         .lang-selector {
-            background: #eaf4ec;
-            border: none;
-            border-radius: 40px;
-            padding: 6px 16px;
-            font-size: 15px;
-            font-weight: 500;
-            color: #1b4e3a;
-            outline: none;
-            cursor: pointer;
+            background: #eaf4ec; border: none; border-radius: 40px;
+            padding: 6px 16px; font-size: 15px; font-weight: 500;
+            color: #1b4e3a; outline: none; cursor: pointer;
             border: 1px solid #bcd0c0;
         }
-
-        .dark-theme .lang-selector {
-            background: #2e4d39;
-            color: #e2f0e6;
-            border-color: #4f735b;
-        }
+        .dark-theme .lang-selector { background: #2e4d39; color: #e2f0e6; border-color: #4f735b; }
 
         .theme-toggle {
-            background: #eaf4ec;
-            border: none;
-            border-radius: 40px;
-            padding: 8px 20px;
-            font-size: 16px;
-            font-weight: 600;
-            color: #1b4e3a;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 8px;
+            background: #eaf4ec; border: none; border-radius: 40px;
+            padding: 8px 20px; font-size: 16px; font-weight: 600;
+            color: #1b4e3a; cursor: pointer; display: flex; align-items: center; gap: 8px;
             border: 1px solid #bcd0c0;
         }
-
-        .dark-theme .theme-toggle {
-            background: #2e4d39;
-            color: #f0f7e8;
-            border-color: #4f735b;
-        }
+        .dark-theme .theme-toggle { background: #2e4d39; color: #f0f7e8; border-color: #4f735b; }
 
         .score-panel {
-            display: flex;
-            justify-content: space-between;
-            background: #f2faf5;
-            padding: 14px 22px;
-            border-bottom: 1px solid #c8e0d2;
-            font-weight: 600;
-            color: #1d5e3b;
-            transition: background 0.2s;
+            display: flex; justify-content: space-between;
+            background: #f2faf5; padding: 14px 22px; border-bottom: 1px solid #c8e0d2;
+            font-weight: 600; color: #1d5e3b;
         }
-
-        .dark-theme .score-panel {
-            background: #274230;
-            color: #daf0df;
-            border-bottom: 1px solid #3c654a;
-        }
-
+        .dark-theme .score-panel { background: #274230; color: #daf0df; border-bottom-color: #3c654a; }
         .score-panel span {
-            background: white;
-            padding: 5px 16px;
-            border-radius: 40px;
-            font-size: 20px;
-            color: #0f4f2d;
-            border: 1px solid #b1d5bd;
+            background: white; padding: 5px 16px; border-radius: 40px;
+            font-size: 20px; color: #0f4f2d; border: 1px solid #b1d5bd;
         }
+        .dark-theme .score-panel span { background: #1b3625; color: #e2f0e6; border-color: #4f735b; }
 
-        .dark-theme .score-panel span {
-            background: #1b3625;
-            color: #e2f0e6;
-            border-color: #4f735b;
-        }
-
-        .progress-container {
-            padding: 8px 20px 0;
-            background: white;
-            transition: background 0.2s;
-        }
-
-        .dark-theme .progress-container {
-            background: #263f30;
-        }
-
+        .progress-container { padding: 8px 20px 0; background: white; }
+        .dark-theme .progress-container { background: #263f30; }
         .progress-bar-bg {
-            background: #dcf0e3;
-            height: 10px;
-            border-radius: 20px;
+            background: #dcf0e3; height: 10px; border-radius: 20px;
             margin: 10px 0 4px;
         }
-
-        .dark-theme .progress-bar-bg {
-            background: #3d5e4a;
-        }
-
+        .dark-theme .progress-bar-bg { background: #3d5e4a; }
         .progress-fill {
-            height: 10px;
-            background: #2a7a4b;
-            border-radius: 20px;
-            width: 0%;
-            transition: width 0.2s ease;
+            height: 10px; background: #2a7a4b; border-radius: 20px;
+            width: 0%; transition: width 0.2s;
         }
-
         .question-number {
-            font-size: 14px;
-            color: #3b6c50;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
+            font-size: 14px; color: #3b6c50; font-weight: 600;
+            display: flex; justify-content: space-between;
         }
+        .dark-theme .question-number { color: #b5dac4; }
 
-        .dark-theme .question-number {
-            color: #b5dac4;
-        }
-
-        /* quiz card */
-        .quiz-card {
-            padding: 24px 20px 20px;
-            background: white;
-            transition: background 0.2s;
-        }
-
-        .dark-theme .quiz-card {
-            background: #263f30;
-        }
+        .quiz-card { padding: 24px 20px 20px; background: white; }
+        .dark-theme .quiz-card { background: #263f30; }
 
         .question-text {
-            font-size: 20px;
-            font-weight: 700;
-            color: #1a4630;
-            line-height: 1.4;
-            margin-bottom: 24px;
-            background: #ecf9f0;
-            padding: 20px 18px;
-            border-radius: 28px;
+            font-size: 20px; font-weight: 700; color: #1a4630;
+            line-height: 1.4; margin-bottom: 24px;
+            background: #ecf9f0; padding: 20px 18px; border-radius: 28px;
             border: 1px solid #bcddc8;
         }
+        .dark-theme .question-text { background: #1d3d2a; color: #e2f0e6; border-color: #3c654a; }
 
-        .dark-theme .question-text {
-            background: #1d3d2a;
-            color: #e2f0e6;
-            border-color: #3c654a;
-        }
-
-        .options-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-bottom: 28px;
-        }
+        .options-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 28px; }
 
         .option-btn {
-            background: white;
-            border: 2px solid #c2e0ce;
-            border-radius: 50px;
-            padding: 16px 22px;
-            font-size: 17px;
-            font-weight: 500;
-            color: #144e2d;
-            text-align: left;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            transition: all 0.1s;
-            box-shadow: 0 2px 6px rgba(0,30,0,0.02);
-            cursor: pointer;
+            background: white; border: 2px solid #c2e0ce; border-radius: 50px;
+            padding: 16px 22px; font-size: 17px; font-weight: 500;
+            color: #144e2d; text-align: left; display: flex;
+            align-items: center; gap: 15px; cursor: pointer;
+            transition: 0.1s; box-shadow: 0 2px 6px rgba(0,30,0,0.02);
         }
-
-        .dark-theme .option-btn {
-            background: #2f4f38;
-            border-color: #4f735b;
-            color: #e2f0e6;
-        }
-
-        .option-btn i {
-            font-size: 22px;
-            color: #2a7a4b;
-            width: 28px;
-        }
-
-        .dark-theme .option-btn i {
-            color: #9fd3b2;
-        }
-
-        .option-btn.disabled {
-            pointer-events: none;
-            opacity: 0.7;
-        }
-
-        .option-btn.correct {
-            background: #b8e6c9;
-            border-color: #1e7e48;
-            color: #0a4524;
-        }
-
-        .dark-theme .option-btn.correct {
-            background: #1f6f3c;
-            border-color: #6ec184;
-            color: #ffffff;
-        }
-
-        .option-btn.wrong {
-            background: #ffdddd;
-            border-color: #c55a5a;
-            color: #721c1c;
-        }
-
-        .dark-theme .option-btn.wrong {
-            background: #813535;
-            border-color: #b57a7a;
-            color: #ffdbdb;
-        }
+        .dark-theme .option-btn { background: #2f4f38; border-color: #4f735b; color: #e2f0e6; }
+        .option-btn i { font-size: 22px; color: #2a7a4b; width: 28px; }
+        .dark-theme .option-btn i { color: #9fd3b2; }
+        .option-btn.disabled { pointer-events: none; opacity: 0.7; }
+        .option-btn.correct { background: #b8e6c9; border-color: #1e7e48; color: #0a4524; }
+        .dark-theme .option-btn.correct { background: #1f6f3c; border-color: #6ec184; color: #fff; }
+        .option-btn.wrong { background: #ffdddd; border-color: #c55a5a; color: #721c1c; }
+        .dark-theme .option-btn.wrong { background: #813535; border-color: #b57a7a; color: #ffdbdb; }
 
         .next-btn {
-            background: #2a7a4b;
-            border: none;
-            color: white;
-            font-size: 20px;
-            font-weight: 700;
-            padding: 18px 20px;
-            border-radius: 60px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            box-shadow: 0 6px 14px rgba(26, 100, 50, 0.3);
-            margin-bottom: 14px;
-            cursor: pointer;
-            transition: 0.2s;
-            border: 1px solid #19633b;
+            background: #2a7a4b; border: none; color: white;
+            font-size: 20px; font-weight: 700; padding: 18px 20px;
+            border-radius: 60px; width: 100%; display: flex;
+            align-items: center; justify-content: center; gap: 12px;
+            box-shadow: 0 6px 14px rgba(26,100,50,0.3);
+            margin-bottom: 14px; cursor: pointer; border: 1px solid #19633b;
         }
-
-        .dark-theme .next-btn {
-            background: #1b6e3b;
-            box-shadow: 0 4px 10px #0f3d28;
-        }
-
-        .next-btn:disabled {
-            background: #b2d5be;
-            box-shadow: none;
-            cursor: not-allowed;
-            border-color: #90af9b;
-        }
+        .dark-theme .next-btn { background: #1b6e3b; box-shadow: 0 4px 10px #0f3d28; }
+        .next-btn:disabled { background: #b2d5be; box-shadow: none; cursor: not-allowed; border-color: #90af9b; }
 
         .restart-btn {
-            background: transparent;
-            border: 2px solid #2a7a4b;
-            color: #2a7a4b;
-            font-size: 17px;
-            font-weight: 600;
-            padding: 14px;
-            border-radius: 60px;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            cursor: pointer;
-            margin-top: 8px;
-            transition: 0.2s;
+            background: transparent; border: 2px solid #2a7a4b;
+            color: #2a7a4b; font-size: 17px; font-weight: 600;
+            padding: 14px; border-radius: 60px; width: 100%;
+            display: flex; align-items: center; justify-content: center;
+            gap: 8px; cursor: pointer; margin-top: 8px;
         }
-
-        .dark-theme .restart-btn {
-            border-color: #7eb392;
-            color: #b2e2c4;
-        }
+        .dark-theme .restart-btn { border-color: #7eb392; color: #b2e2c4; }
 
         .footer-app {
-            background: #1d3e2d;
-            color: white;
-            padding: 20px;
-            text-align: center;
+            background: #1d3e2d; color: white; padding: 20px; text-align: center;
         }
-
-        .dark-theme .footer-app {
-            background: #0d2a1b;
-        }
-
+        .dark-theme .footer-app { background: #0d2a1b; }
         .download-btn {
-            display: inline-block;
-            background: #fbbf24;
-            color: #1d3e2d;
-            font-weight: 700;
-            padding: 14px 28px;
-            border-radius: 50px;
-            text-decoration: none;
-            font-size: 16px;
-            border: 1px solid #fcd34d;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: 0.2s;
-            margin-bottom: 8px;
+            display: inline-block; background: #fbbf24; color: #1d3e2d;
+            font-weight: 700; padding: 14px 28px; border-radius: 50px;
+            text-decoration: none; font-size: 16px; border: 1px solid #fcd34d;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1); transition: 0.2s; margin-bottom: 8px;
         }
-
-        .download-btn i {
-            margin-right: 8px;
-        }
+        .download-btn i { margin-right: 8px; }
 
         .result-box {
-            background: #e3f3e9;
-            border-radius: 40px;
-            padding: 32px 20px;
-            text-align: center;
-            margin: 20px 0;
+            background: #e3f3e9; border-radius: 40px; padding: 32px 20px;
+            text-align: center; margin: 20px 0;
         }
-
-        .dark-theme .result-box {
-            background: #1d3d2a;
-            color: #e2f0e6;
-        }
+        .dark-theme .result-box { background: #1d3d2a; color: #e2f0e6; }
     </style>
 </head>
 <body>
-    <div class="phone-frame" id="appFrame">
+    <div class="phone-frame">
         <!-- header -->
         <div class="app-header">
-            <h2><i class="fas fa-book-open"></i> Quranic Quiz</h2>
-            <p><i class="fas fa-database"></i> <span id="questionCountDisplay">2000+</span> <span id="headerQuestionsLabel">questions</span></p>
+            <h2><i class="fas fa-book-open"></i> Islamic Quiz</h2>
+            <p><i class="fas fa-database"></i> <span id="questionCountDisplay">200+</span> <span id="headerQuestionsLabel">questions</span></p>
         </div>
 
         <!-- controls: language & theme -->
@@ -451,7 +191,7 @@
         </div>
         <div class="progress-container">
             <div class="question-number">
-                <span id="currentQNum">1</span> / <span id="totalQ">2000</span>
+                <span id="currentQNum">1</span> / <span id="totalQ">200</span>
             </div>
             <div class="progress-bar-bg">
                 <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
@@ -474,152 +214,220 @@
 
     <script>
         (function() {
-            // ---------- MULTI-LANGUAGE UI STRINGS ----------
+            // ---------- UI STRINGS (translated) ----------
             const uiStrings = {
-                en: { score: "Score", next: "Next Question", restart: "Restart Quiz", completed: "Quiz completed!", correctAnswers: "You answered", correctly: "correctly.", themeDark: "Dark", themeLight: "Light", headerQuestions: "questions", tapForOptions: "Tap option" },
+                en: { score: "Score", next: "Next Question", restart: "Restart Quiz", completed: "Quiz completed!", correctAnswers: "You answered", correctly: "correctly.", themeDark: "Dark", themeLight: "Light", headerQuestions: "questions" },
                 hi: { score: "स्कोर", next: "अगला प्रश्न", restart: "फिर से शुरू करें", completed: "प्रश्नोत्तरी पूरी हुई!", correctAnswers: "आपने सही उत्तर दिए", correctly: "सही।", themeDark: "डार्क", themeLight: "लाइट", headerQuestions: "प्रश्न" },
                 ur: { score: "اسکور", next: "اگلا سوال", restart: "دوبارہ شروع کریں", completed: "کوئز مکمل ہوا!", correctAnswers: "آپ نے درست جواب دیے", correctly: "درست۔", themeDark: "ڈارک", themeLight: "لائٹ", headerQuestions: "سوالات" },
                 ar: { score: "النقاط", next: "السؤال التالي", restart: "إعادة التشغيل", completed: "اكتمل الاختبار!", correctAnswers: "لقد أجبت بشكل صحيح", correctly: "إجابة صحيحة.", themeDark: "داكن", themeLight: "فاتح", headerQuestions: "سؤال" }
             };
 
-            // ---------- QUESTION BANK (30 base questions in 4 languages) ----------
-            const questionBank = {
-                en: [
-                    { question: "What is the first Surah in the Quran?", options: ["Al-Fatiha", "Al-Baqarah", "Al-Ikhlas", "An-Nas"], correct: 0 },
-                    { question: "How many Surahs are in the Quran?", options: ["114", "115", "113", "116"], correct: 0 },
-                    { question: "Which prophet is known as 'Khalilullah' (Friend of Allah)?", options: ["Musa", "Isa", "Ibrahim", "Muhammad"], correct: 2 },
-                    { question: "What is the longest Surah in the Quran?", options: ["Al-Baqarah", "Aal-Imran", "An-Nisa", "Al-A'raf"], correct: 0 },
-                    { question: "Which Surah is known as the 'Heart of the Quran'?", options: ["Yasin", "Rahman", "Mulk", "Ikhlas"], correct: 0 },
-                    { question: "In which Surah is the story of Prophet Yusuf (AS) told in detail?", options: ["Yusuf", "Hud", "Ibrahim", "Saad"], correct: 0 },
-                    { question: "What is the smallest Surah (by number of verses)?", options: ["Al-Kawthar", "Al-Ikhlas", "An-Nasr", "Al-Asr"], correct: 0 },
-                    { question: "Which Surah does NOT begin with Bismillah?", options: ["At-Tawbah", "Al-Fatiha", "An-Naml", "Al-Baqarah"], correct: 0 },
-                    { question: "How many verses are in Surah Al-Fatiha?", options: ["7", "6", "8", "5"], correct: 0 },
-                    { question: "Which angel brought revelation to Prophet Muhammad ﷺ?", options: ["Jibril", "Mika'il", "Israfil", "Malik"], correct: 0 },
-                    { question: "Obligatory charity in Islam is called:", options: ["Zakat", "Sadaqah", "Khums", "Fidya"], correct: 0 },
-                    { question: "Fasting during which month is obligatory?", options: ["Ramadan", "Muharram", "Shawwal", "Dhul Hijjah"], correct: 0 },
-                    { question: "What is the first pillar of Islam?", options: ["Shahada", "Salah", "Zakat", "Sawm"], correct: 0 },
-                    { question: "Which prayer is performed at dawn?", options: ["Fajr", "Dhuhr", "Asr", "Maghrib"], correct: 0 },
-                    { question: "How many fard rakats are in Maghrib prayer?", options: ["3", "2", "4", "1"], correct: 0 },
-                    { question: "Which Surah is called 'Umm al-Kitab'?", options: ["Al-Fatiha", "Al-Baqarah", "Yasin", "Al-Ikhlas"], correct: 0 },
-                    { question: "Who was the first caliph after Prophet Muhammad ﷺ?", options: ["Abu Bakr", "Umar", "Uthman", "Ali"], correct: 0 },
-                    { question: "Where was the first revelation revealed?", options: ["Cave Hira", "Cave Thawr", "Masjid Nabawi", "Masjid Aqsa"], correct: 0 },
-                    { question: "Which prophet was swallowed by a whale?", options: ["Yunus", "Musa", "Ayyub", "Yusuf"], correct: 0 },
-                    { question: "Which prophet was granted the miracle of splitting the sea?", options: ["Musa", "Isa", "Ibrahim", "Nuh"], correct: 0 },
-                    { question: "What is the last Surah of the Quran?", options: ["An-Nas", "Al-Ikhlas", "Al-Falaq", "Al-Kawthar"], correct: 0 },
-                    { question: "Which surah contains Ayat al-Kursi?", options: ["Al-Baqarah", "Aal-Imran", "Al-Ma'idah", "Al-Hashr"], correct: 0 },
-                    { question: "What is the meaning of 'Alhamdulillah'?", options: ["Praise be to Allah", "Allah is great", "Glory to Allah", "There is no god but Allah"], correct: 0 },
-                    { question: "Which companion was known as 'Al-Siddiq'?", options: ["Abu Bakr", "Umar", "Uthman", "Ali"], correct: 0 },
-                    { question: "Which prophet rebuilt the Kaaba with his son Ismail?", options: ["Ibrahim", "Nuh", "Musa", "Dawud"], correct: 0 },
-                    { question: "Which surah tells the story of the elephant army?", options: ["Al-Fil", "Quraish", "Al-Ma'un", "Al-Kawthar"], correct: 0 },
-                    { question: "How many Juz' are there in the Quran?", options: ["30", "29", "31", "28"], correct: 0 },
-                    { question: "Another name for Surah Al-Fatiha is:", options: ["The Opening", "The Cow", "The Family of Imran", "The Table"], correct: 0 },
-                    { question: "What was the first word revealed?", options: ["Iqra (Read)", "Alhamdulillah", "Bismillah", "Yā ayyuha"], correct: 0 },
-                    { question: "Which prophet was given the Zabur (Psalms)?", options: ["Dawud", "Sulaiman", "Musa", "Isa"], correct: 0 }
-                ],
-                hi: [
-                    { question: "कुरान की पहली सूरह कौन सी है?", options: ["अल-फातिहा", "अल-बकरा", "अल-इखलास", "अन-नास"], correct: 0 },
-                    { question: "कुरान में कितनी सूरह हैं?", options: ["114", "115", "113", "116"], correct: 0 },
-                    { question: "किस नबी को 'खलीलुल्लाह' कहा जाता है?", options: ["मूसा", "ईसा", "इब्राहीम", "मुहम्मद"], correct: 2 },
-                    { question: "सबसे लंबी सूरह कौन सी है?", options: ["अल-बकरा", "आल-इमरान", "अन-निसा", "अल-आराफ"], correct: 0 },
-                    { question: "किस सूरह को 'कुरान का दिल' कहा जाता है?", options: ["यासीन", "रहमान", "मुल्क", "इखलास"], correct: 0 },
-                    { question: "किस सूरह में यूसुफ (अ) की कहानी विस्तार से है?", options: ["यूसुफ", "हूद", "इब्राहीम", "साद"], correct: 0 },
-                    { question: "सबसे छोटी सूरह कौन सी है?", options: ["अल-कौसर", "अल-इखलास", "अन-नस्र", "अल-अस्र"], correct: 0 },
-                    { question: "कौन सी सूरह बिस्मिल्लाह से शुरू नहीं होती?", options: ["अत-तौबा", "अल-फातिहा", "अन-नम्ल", "अल-बकरा"], correct: 0 },
-                    { question: "सूरह अल-फातिहा में कितनी आयतें हैं?", options: ["7", "6", "8", "5"], correct: 0 },
-                    { question: "पैगंबर ﷺ पर वही लाने वाले फरिश्ते कौन थे?", options: ["जिब्रील", "मीकाईल", "इसराफील", "मालिक"], correct: 0 },
-                    { question: "इस्लाम में अनिवार्य दान को क्या कहते हैं?", options: ["ज़कात", "सदक़ा", "खुम्स", "फिद्या"], correct: 0 },
-                    { question: "किस महीने में रोज़ा अनिवार्य है?", options: ["रमज़ान", "मुहर्रम", "शव्वाल", "ज़ुल-हिज्जा"], correct: 0 },
-                    { question: "इस्लाम का पहला स्तंभ क्या है?", options: ["शहादा", "नमाज़", "ज़कात", "रोज़ा"], correct: 0 },
-                    { question: "कौन सी नमाज़ सुबह सवेरे पढ़ी जाती है?", options: ["फज्र", "ज़ुहर", "अस्र", "मग़रिब"], correct: 0 },
-                    { question: "मग़रिब की नमाज़ में कितनी फर्ज रकात हैं?", options: ["3", "2", "4", "1"], correct: 0 },
-                    { question: "किस सूरह को 'उम्मुल किताब' कहा जाता है?", options: ["अल-फातिहा", "अल-बकरा", "यासीन", "अल-इखलास"], correct: 0 },
-                    { question: "पैगंबर ﷺ के बाद पहले खलीफा कौन थे?", options: ["अबू बक्र", "उमर", "उस्मान", "अली"], correct: 0 },
-                    { question: "पहली वही कहाँ नाज़िल हुई?", options: ["गारे हिरा", "गारे सौर", "मस्जिद नबवी", "मस्जिद अक्सा"], correct: 0 },
-                    { question: "किस नबी को मछली ने निगल लिया था?", options: ["यूनुस", "मूसा", "अय्यूब", "यूसुफ"], correct: 0 },
-                    { question: "किस नबी को समुद्र के विभाजन का चमत्कार मिला?", options: ["मूसा", "ईसा", "इब्राहीम", "नूह"], correct: 0 },
-                    { question: "कुरान की आखिरी सूरह कौन सी है?", options: ["अन-नास", "अल-इखलास", "अल-फलक", "अल-कौसर"], correct: 0 },
-                    { question: "किस सूरह में आयत अल-कुर्सी है?", options: ["अल-बकरा", "आल-इमरान", "अल-माइदा", "अल-हश्र"], correct: 0 },
-                    { question: "'अल्हम्दुलिल्लाह' का क्या अर्थ है?", options: ["तमाम तारीफें अल्लाह के लिए", "अल्लाह सबसे बड़ा", "अल्लाह पाक है", "अल्लाह के सिवा कोई माबूद नहीं"], correct: 0 },
-                    { question: "किस सहाबी को 'अल-सिद्दीक' कहा जाता है?", options: ["अबू बक्र", "उमर", "उस्मान", "अली"], correct: 0 },
-                    { question: "किस नबी ने अपने बेटे इस्माइल के साथ काबा का पुनर्निर्माण किया?", options: ["इब्राहीम", "नूह", "मूसा", "दाऊद"], correct: 0 },
-                    { question: "हाथी सेना की कहानी किस सूरह में है?", options: ["अल-फील", "कुरैश", "अल-माऊन", "अल-कौसर"], correct: 0 },
-                    { question: "कुरान में कितने जुज़ हैं?", options: ["30", "29", "31", "28"], correct: 0 },
-                    { question: "सूरह अल-फातिहा का दूसरा नाम क्या है?", options: ["उम्मुल किताब", "अल-बकरा", "आल-इमरान", "अल-माइदा"], correct: 0 },
-                    { question: "पहली बार कौन सा शब्द नाज़िल हुआ?", options: ["इक़रा (पढ़ो)", "अल्हम्दुलिल्लाह", "बिस्मिल्लाह", "या अय्युहा"], correct: 0 },
-                    { question: "किस नबी को ज़बूर दी गई?", options: ["दाऊद", "सुलेमान", "मूसा", "ईसा"], correct: 0 }
-                ],
-                ur: [
-                    { question: "قرآن کی پہلی سورت کون سی ہے؟", options: ["الفاتحہ", "البقرہ", "الاخلاص", "الناس"], correct: 0 },
-                    { question: "قرآن میں کتنی سورتیں ہیں؟", options: ["114", "115", "113", "116"], correct: 0 },
-                    { question: "کون سے نبی 'خلیل اللہ' کہلاتے ہیں؟", options: ["موسیٰ", "عیسیٰ", "ابراہیم", "محمد"], correct: 2 },
-                    { question: "سب سے لمبی سورت کون سی ہے؟", options: ["البقرہ", "آل عمران", "النساء", "الاعراف"], correct: 0 },
-                    { question: "کون سی سورت 'قلب قرآن' کہلاتی ہے؟", options: ["یٰسین", "الرحمن", "الملک", "الاخلاص"], correct: 0 },
-                    { question: "یوسف علیہ السلام کا قصہ مفصل کس سورت میں ہے؟", options: ["یوسف", "ھود", "ابراہیم", "ص"], correct: 0 },
-                    { question: "سب سے چھوٹی سورت کون سی ہے؟", options: ["الکوثر", "الاخلاص", "النصر", "العصر"], correct: 0 },
-                    { question: "کس سورت کا آغاز بسم اللہ سے نہیں ہوتا؟", options: ["التوبہ", "الفاتحہ", "النمل", "البقرہ"], correct: 0 },
-                    { question: "سورہ الفاتحہ میں کتنی آیات ہیں؟", options: ["7", "6", "8", "5"], correct: 0 },
-                    { question: "نبی کریم ﷺ پر وحی لانے والے فرشتے کا نام؟", options: ["جبریل", "میکائیل", "اسرافیل", "مالک"], correct: 0 },
-                    { question: "اسلام میں فرض صدقہ کا نام؟", options: ["زکوٰۃ", "صدقہ", "خمس", "فدیہ"], correct: 0 },
-                    { question: "کس مہینے کے روزے فرض ہیں؟", options: ["رمضان", "محرم", "شوال", "ذوالحجہ"], correct: 0 },
-                    { question: "اسلام کا پہلا رکن کیا ہے؟", options: ["شہادت", "نماز", "زکوٰۃ", "روزہ"], correct: 0 },
-                    { question: "صبح کی نماز کا نام؟", options: ["فجر", "ظہر", "عصر", "مغرب"], correct: 0 },
-                    { question: "مغرب کی نماز میں کتنی فرض رکعات ہیں؟", options: ["3", "2", "4", "1"], correct: 0 },
-                    { question: "کس سورت کو 'ام الکتاب' کہا جاتا ہے؟", options: ["الفاتحہ", "البقرہ", "یٰسین", "الاخلاص"], correct: 0 },
-                    { question: "نبی ﷺ کے بعد پہلے خلیفہ کون تھے؟", options: ["ابوبکر", "عمر", "عثمان", "علی"], correct: 0 },
-                    { question: "پہلی وحی کہاں نازل ہوئی؟", options: ["غار حرا", "غار ثور", "مسجد نبوی", "مسجد اقصیٰ"], correct: 0 },
-                    { question: "کون سے نبی کو مچھلی نے نگل لیا تھا؟", options: ["یونس", "موسیٰ", "ایوب", "یوسف"], correct: 0 },
-                    { question: "کس نبی کو سمندر کے پھٹنے کا معجزہ ملا؟", options: ["موسیٰ", "عیسیٰ", "ابراہیم", "نوح"], correct: 0 },
-                    { question: "قرآن کی آخری سورت کون سی ہے؟", options: ["الناس", "الاخلاص", "الفلق", "الکوثر"], correct: 0 },
-                    { question: "آیت الکرسی کس سورت میں ہے؟", options: ["البقرہ", "آل عمران", "المائدہ", "الحشر"], correct: 0 },
-                    { question: "'الحمدللہ' کا مطلب کیا ہے؟", options: ["تمام تعریفیں اللہ کے لیے", "اللہ بہت بڑا ہے", "اللہ پاک ہے", "اللہ کے سوا کوئی معبود نہیں"], correct: 0 },
-                    { question: "کون سے صحابی 'الصدیق' کہلاتے ہیں؟", options: ["ابوبکر", "عمر", "عثمان", "علی"], correct: 0 },
-                    { question: "کس نبی نے اپنے بیٹے اسماعیل کے ساتھ خانہ کعبہ تعمیر کیا؟", options: ["ابراہیم", "نوح", "موسیٰ", "داود"], correct: 0 },
-                    { question: "اصحاب الفیل کا واقعہ کس سورت میں ہے؟", options: ["الفیل", "قریش", "الماعون", "الکوثر"], correct: 0 },
-                    { question: "قرآن کے کتنے پارے ہیں؟", options: ["30", "29", "31", "28"], correct: 0 },
-                    { question: "سورہ الفاتحہ کا دوسرا نام کیا ہے؟", options: ["ام الکتاب", "البقرہ", "آل عمران", "المائدہ"], correct: 0 },
-                    { question: "سب سے پہلے کون سا لفظ نازل ہوا؟", options: ["اقرأ (پڑھ)", "الحمدللہ", "بسم اللہ", "یا ایہا"], correct: 0 },
-                    { question: "کس نبی کو زبور دی گئی؟", options: ["داود", "سلیمان", "موسیٰ", "عیسیٰ"], correct: 0 }
-                ],
-                ar: [
-                    { question: "ما هي أول سورة في القرآن؟", options: ["الفاتحة", "البقرة", "الإخلاص", "الناس"], correct: 0 },
-                    { question: "كم عدد سور القرآن؟", options: ["114", "115", "113", "116"], correct: 0 },
-                    { question: "من هو النبي الملقب بخليل الله؟", options: ["موسى", "عيسى", "إبراهيم", "محمد"], correct: 2 },
-                    { question: "ما هي أطول سورة في القرآن؟", options: ["البقرة", "آل عمران", "النساء", "الأعراف"], correct: 0 },
-                    { question: "ما هي السورة التي تسمى قلب القرآن؟", options: ["يس", "الرحمن", "الملك", "الإخلاص"], correct: 0 },
-                    { question: "في أي سورة وردت قصة يوسف عليه السلام بالتفصيل؟", options: ["يوسف", "هود", "إبراهيم", "ص"], correct: 0 },
-                    { question: "ما هي أقصر سورة في القرآن؟", options: ["الكوثر", "الإخلاص", "النصر", "العصر"], correct: 0 },
-                    { question: "ما هي السورة التي لا تبدأ بالبسملة؟", options: ["التوبة", "الفاتحة", "النمل", "البقرة"], correct: 0 },
-                    { question: "كم عدد آيات سورة الفاتحة؟", options: ["7", "6", "8", "5"], correct: 0 },
-                    { question: "من هو الملك الذي نزل بالوحي على النبي ﷺ؟", options: ["جبريل", "ميكائيل", "إسرافيل", "مالك"], correct: 0 },
-                    { question: "ما اسم الصدقة الواجبة في الإسلام؟", options: ["الزكاة", "صدقة", "الخمس", "الفدية"], correct: 0 },
-                    { question: "صوم أي شهر فرض؟", options: ["رمضان", "محرم", "شوال", "ذو الحجة"], correct: 0 },
-                    { question: "ما هو الركن الأول من أركان الإسلام؟", options: ["الشهادة", "الصلاة", "الزكاة", "الصوم"], correct: 0 },
-                    { question: "ما هي الصلاة التي تؤدى عند الفجر؟", options: ["الفجر", "الظهر", "العصر", "المغرب"], correct: 0 },
-                    { question: "كم عدد ركعات الفرض في صلاة المغرب؟", options: ["3", "2", "4", "1"], correct: 0 },
-                    { question: "ما هي السورة التي تسمى أم الكتاب؟", options: ["الفاتحة", "البقرة", "يس", "الإخلاص"], correct: 0 },
-                    { question: "من هو أول الخلفاء الراشدين بعد النبي ﷺ؟", options: ["أبو بكر", "عمر", "عثمان", "علي"], correct: 0 },
-                    { question: "أين نزل الوحي أول مرة؟", options: ["غار حراء", "غار ثور", "المسجد النبوي", "المسجد الأقصى"], correct: 0 },
-                    { question: "أي نبي ابتلعه الحوت؟", options: ["يونس", "موسى", "أيوب", "يوسف"], correct: 0 },
-                    { question: "أي نبي أعطي معجزة شق البحر؟", options: ["موسى", "عيسى", "إبراهيم", "نوح"], correct: 0 },
-                    { question: "ما هي آخر سورة في القرآن؟", options: ["الناس", "الإخلاص", "الفلق", "الكوثر"], correct: 0 },
-                    { question: "أي سورة تحتوي على آية الكرسي؟", options: ["البقرة", "آل عمران", "المائدة", "الحشر"], correct: 0 },
-                    { question: "ما معنى 'الحمد لله'؟", options: ["الثناء لله", "الله أكبر", "سبحان الله", "لا إله إلا الله"], correct: 0 },
-                    { question: "من هو الصحابي الملقب بالصديق؟", options: ["أبو بكر", "عمر", "عثمان", "علي"], correct: 0 },
-                    { question: "أي نبي بنى الكعبة مع ابنه إسماعيل؟", options: ["إبراهيم", "نوح", "موسى", "داود"], correct: 0 },
-                    { question: "ما هي السورة التي تتحدث عن أصحاب الفيل؟", options: ["الفيل", "قريش", "الماعون", "الكوثر"], correct: 0 },
-                    { question: "كم جزءاً في القرآن؟", options: ["30", "29", "31", "28"], correct: 0 },
-                    { question: "ما هو الاسم الآخر لسورة الفاتحة؟", options: ["أم الكتاب", "البقرة", "آل عمران", "المائدة"], correct: 0 },
-                    { question: "ما هي أول كلمة نزلت من القرآن؟", options: ["اقرأ", "الحمد لله", "بسم الله", "يا أيها"], correct: 0 },
-                    { question: "أي نبي أنزل عليه الزبور؟", options: ["داود", "سليمان", "موسى", "عيسى"], correct: 0 }
-                ]
-            };
+            // ---------- 200 ENGLISH QUESTIONS (from the provided Kotlin list) ----------
+            const questions = [
+                { question: "Q1. What is the first month of the Islamic calendar?", options: ["Rajab", "Muharram", "Ramadan", "Shawwal"], correct: 1 },
+                { question: "Q2. Who was the first wife of the Prophet Muhammad (PBUH)?", options: ["Khadijah bint Khuwaylid", "Aisha bint Abi Bakr", "Hafsa bint Umar", "Fatimah bint Muhammad"], correct: 0 },
+                { question: "Q3. Which prophet built the Kaaba in Mecca?", options: ["Prophet Ibrahim (Abraham)", "Prophet Isma'il (Ishmael)", "Prophet Musa (Moses)", "Prophet Muhammad (PBUH)"], correct: 0 },
+                { question: "Q4. What is the name of the Islamic pilgrimage to Mecca?", options: ["Hajj", "Umrah", "Eid", "Ziyarat"], correct: 0 },
+                { question: "Q5. How many times a day do Muslims perform the Salah (prayer)?", options: ["1", "3", "5", "7"], correct: 2 },
+                { question: "Q6. What is the name of the Islamic holy book?", options: ["Quran", "Bible", "Torah", "Vedas"], correct: 0 },
+                { question: "Q7. Who is known as the Seal of the Prophets in Islam?", options: ["Prophet Musa (Moses)", "Prophet Isa (Jesus)", "Prophet Muhammad (PBUH)", "Prophet Ibrahim (Abraham)"], correct: 2 },
+                { question: "Q8. What is the name of the angel who delivered revelations to the Prophet Muhammad (PBUH)?", options: ["Gabriel", "Michael", "Raphael", "Azrael"], correct: 0 },
+                { question: "Q9. What is the name of the Islamic month of fasting?", options: ["Ramadan", "Shawwal", "Dhul-Hijjah", "Rabi' al-Awwal"], correct: 0 },
+                { question: "Q10. Which Islamic festival marks the end of Ramadan?", options: ["Eid al-Fitr", "Eid al-Adha", "Eid al-Ghadeer", "Eid al-Mawlid"], correct: 0 },
+                { question: "Q11. Who was the first martyr in Islam?", options: ["Abu Bakr", "Umar ibn al-Khattab", "Ali ibn Abi Talib", "Sumayyah bint Khabbab"], correct: 3 },
+                { question: "Q12. What is the significance of the Night of Decree (Laylat al-Qadr) in Islam?", options: ["The Quran was revealed on this night", "The first mosque was built on this night", "The Kaaba was constructed on this night", "The first revelation was received on this night"], correct: 0 },
+                { question: "Q13. What is the name of the Muslim declaration of faith?", options: ["Salat", "Shahada", "Zakat", "Hajj"], correct: 1 },
+                { question: "Q14. What is the name of the second caliph of Islam?", options: ["Abu Bakr", "Umar ibn al-Khattab", "Uthman ibn Affan", "Ali ibn Abi Talib"], correct: 1 },
+                { question: "Q15. Which prophet is known for his patience in the face of adversity?", options: ["Prophet Yunus (Jonah)", "Prophet Ayub (Job)", "Prophet Sulaiman (Solomon)", "Prophet Yusuf (Joseph)"], correct: 1 },
+                { question: "Q16. What is the name of the Islamic greeting meaning peace be upon you?", options: ["Salam", "Shalom", "Namaste", "Ahlan wa sahlan"], correct: 0 },
+                { question: "Q17. Who was the foster mother of the Prophet Muhammad (PBUH)?", options: ["Khadijah bint Khuwaylid", "Aisha bint Abi Bakr", "Halimah al-Saadia", "Fatimah bint Muhammad"], correct: 2 },
+                { question: "Q18. Which surah of the Quran is known as the Heart of the Quran?", options: ["Surah Al-Fatiha", "Surah Al-Ikhlas", "Surah Yaseen", "Surah Al-Kahf"], correct: 2 },
+                { question: "Q19. What is the name of the Islamic month in which fasting is prohibited?", options: ["Ramadan", "Shawwal", "Dhul-Hijjah", "Dhul-Qadah"], correct: 3 },
+                { question: "Q20. What is the name of the Islamic pilgrimage that can be performed at any time of the year?", options: ["Hajj", "Umrah", "Eid", "Ziyarat"], correct: 1 },
+                { question: "Q21. How many chapters are there in the Quran?", options: ["30", "114", "100", "99"], correct: 1 },
+                { question: "Q22. What is the name of the battle in which the Prophet Muhammad (PBUH) participated for the first time?", options: ["Battle of Badr", "Battle of Uhud", "Battle of Khandaq", "Battle of Hunayn"], correct: 0 },
+                { question: "Q23. Which surah of the Quran is known as the 'Opening'?", options: ["Surah Al-Fatiha", "Surah Al-Ikhlas", "Surah Al-Baqarah", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q24. Who is the father of the Prophet Muhammad (PBUH)?", options: ["Abu Talib", "Abdullah ibn Abdul-Muttalib", "Abu Bakr", "Ali ibn Abi Talib"], correct: 1 },
+                { question: "Q25. How many sons did the Prophet Muhammad (PBUH) have?", options: ["1", "2", "3", "4"], correct: 2 },
+                { question: "Q26. What is the name of the longest surah in the Quran?", options: ["Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf", "Surah Al-Nisa"], correct: 1 },
+                { question: "Q27. Which Islamic festival is also known as the 'Festival of Sacrifice'?", options: ["Eid al-Fitr", "Eid al-Adha", "Eid al-Ghadeer", "Eid al-Mawlid"], correct: 1 },
+                { question: "Q28. Who was the first male to accept Islam?", options: ["Ali ibn Abi Talib", "Abu Bakr", "Uthman ibn Affan", "Umar ibn al-Khattab"], correct: 0 },
+                { question: "Q29. What is the Arabic term for the 'Five Pillars of Islam'?", options: ["Arkan al-Islam", "Usul al-Din", "Sunnah", "Hadith"], correct: 0 },
+                { question: "Q30. Which city is considered the third holiest city in Islam?", options: ["Makkah", "Madina", "Jerusalem", "Karbala"], correct: 2 },
+                { question: "Q31. What is the name of the well that appeared for Hajar and her son Ismail in the desert?", options: ["Well of Zamzam", "Well of Hawazin", "Well of Badr", "Well of Al-Kauthar"], correct: 0 },
+                { question: "Q32. What is the Arabic word for charity given to the poor?", options: ["Zakat", "Sadaqah", "Fitrah", "Khums"], correct: 1 },
+                { question: "Q33. Which surah in the Quran mentions the Prophet Yusuf (Joseph) extensively?", options: ["Surah Al-Fatiha", "Surah Yusuf", "Surah Al-Baqarah", "Surah Al-Nisa"], correct: 1 },
+                { question: "Q34. What is the Arabic term for the Islamic law derived from the Quran and Hadith?", options: ["Sharia", "Fiqh", "Sunnah", "Hadith"], correct: 0 },
+                { question: "Q35. Which prophet was swallowed by a whale?", options: ["Prophet Yunus (Jonah)", "Prophet Musa (Moses)", "Prophet Isa (Jesus)", "Prophet Yusuf (Joseph)"], correct: 0 },
+                { question: "Q36. What is the significance of the Zamzam water in Islam?", options: ["It was a miracle from Allah", "It was brought by angels", "It was a gift from Prophet Ibrahim", "It appeared due to Prophet Musa's prayer"], correct: 0 },
+                { question: "Q37. What is the name of the night journey and ascension of the Prophet Muhammad (PBUH) to the heavens?", options: ["Isra and Mi'raj", "Hajj", "Laylat al-Qadr", "Umrah"], correct: 0 },
+                { question: "Q38. What does the term 'Halal' refer to in Islam?", options: ["Permissible", "Forbidden", "Sacred", "Punishable"], correct: 0 },
+                { question: "Q39. Which prophet is known for his wisdom and was given the ability to speak to animals?", options: ["Prophet Sulaiman (Solomon)", "Prophet Dawud (David)", "Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)"], correct: 0 },
+                { question: "Q40. What is the name of the small cube-shaped structure located in the center of the Grand Mosque in Mecca?", options: ["Kaaba", "Dome of the Rock", "Masjid al-Nabawi", "Al-Aqsa Mosque"], correct: 0 },
+                { question: "Q41. What is the main language of the Quran?", options: ["Arabic", "Hebrew", "Aramaic", "Persian"], correct: 0 },
+                { question: "Q42. How many prophets are mentioned by name in the Quran?", options: ["25", "28", "30", "35"], correct: 0 },
+                { question: "Q43. What is the name of the daughter of the Prophet Muhammad (PBUH) who is highly respected in Islam?", options: ["Fatimah", "Aisha", "Hafsa", "Khadijah"], correct: 0 },
+                { question: "Q44. What is the significance of the Kaaba in Islam?", options: ["It is the direction of prayer (Qibla)", "It is where the Quran was revealed", "It is the resting place of Prophet Muhammad (PBUH)", "It is where the Hajj pilgrimage ends"], correct: 0 },
+                { question: "Q45. What is the name of the mountain where the Prophet Muhammad (PBUH) received the first revelation?", options: ["Mount Hira", "Mount Sinai", "Mount Arafat", "Mount Uhud"], correct: 0 },
+                { question: "Q46. What is the significance of the Eid al-Adha festival in Islam?", options: ["Commemorates the willingness of Ibrahim (Abraham) to sacrifice his son", "Marks the end of Ramadan", "Celebrates the birth of Prophet Muhammad (PBUH)", "Marks the night journey of Prophet Muhammad (PBUH)"], correct: 0 },
+                { question: "Q47. Which surah in the Quran is entirely dedicated to the concept of monotheism?", options: ["Surah Al-Ikhlas", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q48. What is the name of the city where the Prophet Muhammad (PBUH) migrated to from Mecca?", options: ["Medina", "Jerusalem", "Cairo", "Baghdad"], correct: 0 },
+                { question: "Q49. What is the Arabic term for fasting during the month of Ramadan?", options: ["Sawm", "Zakat", "Salat", "Hajj"], correct: 0 },
+                { question: "Q50. What is the significance of the Hajj pilgrimage in Islam?", options: ["It is one of the Five Pillars of Islam", "It is a voluntary act of worship", "It is performed once every two years", "It is only for scholars and imams"], correct: 0 },
+                { question: "Q51. Who is known as the mother of the believers in Islam?", options: ["Aisha bint Abi Bakr", "Khadijah bint Khuwaylid", "Fatimah bint Muhammad", "Hafsa bint Umar"], correct: 0 },
+                { question: "Q52. Which Islamic month is considered the most sacred?", options: ["Ramadan", "Muharram", "Dhul-Hijjah", "Rabi' al-Awwal"], correct: 0 },
+                { question: "Q53. What does the term 'Ummah' refer to in Islam?", options: ["The global Muslim community", "The five daily prayers", "The pilgrimage to Mecca", "The teachings of the Prophet Muhammad (PBUH)"], correct: 0 },
+                { question: "Q54. What is the significance of Friday (Jumu'ah) in Islam?", options: ["It is a day of congregational prayer", "It is the day the Quran was revealed", "It is the day of rest", "It is the day of judgment"], correct: 0 },
+                { question: "Q55. Who was the first caliph after the death of the Prophet Muhammad (PBUH)?", options: ["Abu Bakr", "Umar ibn al-Khattab", "Uthman ibn Affan", "Ali ibn Abi Talib"], correct: 0 },
+                { question: "Q56. What is the name of the chapter in the Quran that describes the creation of man?", options: ["Surah Al-Alaq", "Surah Al-Baqarah", "Surah Al-Ikhlas", "Surah Al-Nisa"], correct: 0 },
+                { question: "Q57. What is the Arabic term for the practice of modesty in Islam?", options: ["Hijab", "Sunnah", "Sharia", "Zakat"], correct: 0 },
+                { question: "Q58. What is the name of the angel responsible for blowing the trumpet on the Day of Judgment?", options: ["Israfil", "Jibril", "Mikail", "Azrael"], correct: 0 },
+                { question: "Q59. What is the significance of Surah Al-Fatiha in the daily prayers of a Muslim?", options: ["It is recited in every unit (rak'ah) of the prayer", "It is recited only during special prayers", "It is recited during Ramadan", "It is recited during Hajj"], correct: 0 },
+                { question: "Q60. What is the Arabic term for the pilgrimage that is not obligatory and can be performed at any time?", options: ["Umrah", "Hajj", "Tawaf", "Sa'i"], correct: 0 },
+                { question: "Q61. Which prophet is known for interpreting the dreams of the king of Egypt?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Sulaiman (Solomon)", "Prophet Ibrahim (Abraham)"], correct: 0 },
+                { question: "Q62. What is the name of the treaty that the Prophet Muhammad (PBUH) signed with the Quraysh tribe of Mecca?", options: ["Treaty of Hudaybiyyah", "Treaty of Aqabah", "Treaty of Uhud", "Treaty of Khaybar"], correct: 0 },
+                { question: "Q63. Which prophet is known for building the Ark?", options: ["Prophet Nuh (Noah)", "Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Hud"], correct: 0 },
+                { question: "Q64. What is the Arabic term for the Islamic practice of remembering Allah?", options: ["Dhikr", "Zakat", "Hajj", "Sawm"], correct: 0 },
+                { question: "Q65. What is the name of the chapter in the Quran that was revealed during the migration of the Prophet Muhammad (PBUH) from Mecca to Medina?", options: ["Surah Al-Anfal", "Surah Al-Baqarah", "Surah Al-Ikhlas", "Surah Al-Fatiha"], correct: 0 },
+                { question: "Q66. What is the name of the cave where the Prophet Muhammad (PBUH) received his first revelation?", options: ["Cave of Hira", "Cave of Thawr", "Cave of Uhud", "Cave of Safa"], correct: 0 },
+                { question: "Q67. What is the Arabic term for the pilgrimage to Mecca that every Muslim must perform at least once in their lifetime if they are able?", options: ["Hajj", "Umrah", "Tawaf", "Sa'i"], correct: 0 },
+                { question: "Q68. What is the name of the mountain where the Prophet Musa (Moses) received the Ten Commandments?", options: ["Mount Sinai", "Mount Hira", "Mount Arafat", "Mount Uhud"], correct: 0 },
+                { question: "Q69. Which prophet is known for being thrown into a fire by his people?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Yunus (Jonah)"], correct: 0 },
+                { question: "Q70. What is the Arabic term for the charity that Muslims are required to give annually?", options: ["Zakat", "Sadaqah", "Fitrah", "Khums"], correct: 0 },
+                { question: "Q71. What is the name of the battle in which the Muslims defended Medina against the Quraysh?", options: ["Battle of Uhud", "Battle of Badr", "Battle of Khandaq", "Battle of Hunayn"], correct: 2 },
+                { question: "Q72. What is the Arabic term for the spiritual leader of a mosque?", options: ["Imam", "Sheikh", "Mufti", "Muezzin"], correct: 0 },
+                { question: "Q73. Which prophet is known for leading the Israelites out of Egypt?", options: ["Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Ibrahim (Abraham)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q74. What is the name of the wife of the Prophet Ibrahim (Abraham) who bore him his first son?", options: ["Hajar", "Sarah", "Khadijah", "Aisha"], correct: 0 },
+                { question: "Q75. What is the Arabic term for the oneness of Allah?", options: ["Tawhid", "Shirk", "Kufr", "Sunnah"], correct: 0 },
+                { question: "Q76. Which prophet is known for surviving the plot of his brothers who threw him into a well?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Nuh (Noah)"], correct: 0 },
+                { question: "Q77. What is the Arabic term for the struggle or effort in the way of Allah?", options: ["Jihad", "Sawm", "Tawaf", "Zakat"], correct: 0 },
+                { question: "Q78. Which surah in the Quran is known as the 'Chapter of Purity'?", options: ["Surah Al-Ikhlas", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q79. What is the name of the mother of the Prophet Isa (Jesus) in Islam?", options: ["Maryam (Mary)", "Hajar", "Sarah", "Fatimah"], correct: 0 },
+                { question: "Q80. What is the name of the battle in which the Muslims defeated the Quraysh despite being outnumbered?", options: ["Battle of Badr", "Battle of Uhud", "Battle of Khandaq", "Battle of Hunayn"], correct: 0 },
+                { question: "Q81. What is the Arabic term for the night prayer that is performed during the last ten days of Ramadan?", options: ["Tahajjud", "Tarawih", "Qiyam al-Layl", "Witr"], correct: 2 },
+                { question: "Q82. What is the significance of the month of Muharram in Islam?", options: ["It is the first month of the Islamic calendar", "It is the month of fasting", "It is the month of Hajj", "It is the month in which the Quran was revealed"], correct: 0 },
+                { question: "Q83. What is the Arabic term for the act of fasting during the daylight hours?", options: ["Sawm", "Zakat", "Salat", "Hajj"], correct: 0 },
+                { question: "Q84. Who was the second caliph of Islam after the death of the Prophet Muhammad (PBUH)?", options: ["Umar ibn al-Khattab", "Abu Bakr", "Uthman ibn Affan", "Ali ibn Abi Talib"], correct: 0 },
+                { question: "Q85. What is the name of the chapter in the Quran that is dedicated to the story of the People of the Cave?", options: ["Surah Al-Kahf", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Mulk"], correct: 0 },
+                { question: "Q86. Which prophet is known for being the first to practice circumcision?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q87. What is the Arabic term for the pilgrimage to Mecca that is performed during the month of Dhu al-Hijjah?", options: ["Hajj", "Umrah", "Tawaf", "Sa'i"], correct: 0 },
+                { question: "Q88. What is the name of the city where the Prophet Muhammad (PBUH) was born?", options: ["Mecca", "Medina", "Jerusalem", "Cairo"], correct: 0 },
+                { question: "Q89. Which prophet is known for being given the Torah?", options: ["Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q90. What is the name of the treaty that was signed between the Muslims and the Quraysh of Mecca?", options: ["Treaty of Hudaybiyyah", "Treaty of Aqabah", "Treaty of Uhud", "Treaty of Khaybar"], correct: 0 },
+                { question: "Q91. What is the significance of the city of Medina in Islam?", options: ["It is where the Prophet Muhammad (PBUH) migrated to", "It is the birthplace of the Prophet Muhammad (PBUH)", "It is the location of the first revelation", "It is the site of the Kaaba"], correct: 0 },
+                { question: "Q92. What is the name of the chapter in the Quran that describes the event of the splitting of the moon?", options: ["Surah Al-Qamar", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Mulk"], correct: 0 },
+                { question: "Q93. Which prophet is known for being thrown into a well by his brothers?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Nuh (Noah)"], correct: 0 },
+                { question: "Q94. What is the Arabic term for the headscarf worn by Muslim women?", options: ["Hijab", "Niqab", "Chador", "Khimar"], correct: 0 },
+                { question: "Q95. What is the name of the angel who is responsible for taking the souls of the deceased?", options: ["Azrael", "Jibril", "Israfil", "Mikail"], correct: 0 },
+                { question: "Q96. What is the Arabic term for the Friday congregational prayer?", options: ["Jumu'ah", "Tahajjud", "Tarawih", "Qiyam al-Layl"], correct: 0 },
+                { question: "Q97. What is the significance of the city of Jerusalem in Islam?", options: ["It is the third holiest city in Islam", "It is the birthplace of the Prophet Muhammad (PBUH)", "It is the location of the Kaaba", "It is where the Quran was revealed"], correct: 0 },
+                { question: "Q98. What is the name of the chapter in the Quran that is named after the Prophet Yusuf (Joseph)?", options: ["Surah Yusuf", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q99. Which prophet is known for being able to interpret dreams?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Sulaiman (Solomon)", "Prophet Ibrahim (Abraham)"], correct: 0 },
+                { question: "Q100. What is the Arabic term for the pilgrimage to Mecca that can be performed at any time of the year?", options: ["Umrah", "Hajj", "Tawaf", "Sa'i"], correct: 0 },
+                { question: "Q101. What is the significance of the city of Mecca in Islam?", options: ["It is the birthplace of the Prophet Muhammad (PBUH) and the location of the Kaaba", "It is where the Quran was revealed", "It is the third holiest city in Islam", "It is the site of the first mosque"], correct: 0 },
+                { question: "Q102. What is the Arabic term for the purification ritual performed before prayer?", options: ["Wudu", "Sawm", "Zakat", "Tawaf"], correct: 0 },
+                { question: "Q103. What is the name of the first surah in the Quran?", options: ["Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Ikhlas", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q104. Which prophet is known for being the father of the Prophets?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q105. What is the Arabic term for the call to prayer?", options: ["Adhan", "Iqamah", "Tawaf", "Sawm"], correct: 0 },
+                { question: "Q106. What is the name of the mountain where the Prophet Muhammad (PBUH) delivered his farewell sermon?", options: ["Mount Arafat", "Mount Hira", "Mount Uhud", "Mount Sinai"], correct: 0 },
+                { question: "Q107. Which prophet is known for being given the Zabur (Psalms)?", options: ["Prophet Dawud (David)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q108. What is the Arabic term for the obligatory charity given by Muslims?", options: ["Zakat", "Sadaqah", "Fitrah", "Khums"], correct: 0 },
+                { question: "Q109. Which prophet is known for leading the construction of the Kaaba?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q110. What is the Arabic term for the Friday sermon delivered before the congregational prayer?", options: ["Khutbah", "Iqamah", "Adhan", "Tawaf"], correct: 0 },
+                { question: "Q111. What is the significance of the month of Ramadan in Islam?", options: ["It is the month in which the Quran was revealed", "It is the first month of the Islamic calendar", "It is the month of Hajj", "It is the month of Eid al-Adha"], correct: 0 },
+                { question: "Q112. What is the Arabic term for the chapter of the Quran?", options: ["Surah", "Ayah", "Hadith", "Tawaf"], correct: 0 },
+                { question: "Q113. Which prophet is known for being the father of Prophet Ismail (Ishmael)?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q114. What is the Arabic term for the daily prayers performed by Muslims?", options: ["Salat", "Sawm", "Zakat", "Hajj"], correct: 0 },
+                { question: "Q115. Which prophet is known for being swallowed by a whale?", options: ["Prophet Yunus (Jonah)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q116. What is the Arabic term for the direction of prayer in Islam?", options: ["Qibla", "Kaaba", "Mihrab", "Minbar"], correct: 0 },
+                { question: "Q117. What is the name of the treaty that was signed between the Muslims and the Quraysh of Mecca?", options: ["Treaty of Hudaybiyyah", "Treaty of Aqabah", "Treaty of Uhud", "Treaty of Khaybar"], correct: 0 },
+                { question: "Q118. What is the significance of the city of Medina in Islam?", options: ["It is where the Prophet Muhammad (PBUH) migrated to", "It is the birthplace of the Prophet Muhammad (PBUH)", "It is the location of the first revelation", "It is the site of the Kaaba"], correct: 0 },
+                { question: "Q119. What is the name of the chapter in the Quran that describes the event of the splitting of the moon?", options: ["Surah Al-Qamar", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Mulk"], correct: 0 },
+                { question: "Q120. Which prophet is known for being thrown into a well by his brothers?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Nuh (Noah)"], correct: 0 },
+                { question: "Q121. What is the Arabic term for the headscarf worn by Muslim women?", options: ["Hijab", "Niqab", "Chador", "Khimar"], correct: 0 },
+                { question: "Q122. What is the name of the angel who is responsible for taking the souls of the deceased?", options: ["Azrael", "Jibril", "Israfil", "Mikail"], correct: 0 },
+                { question: "Q123. What is the Arabic term for the Friday congregational prayer?", options: ["Jumu'ah", "Tahajjud", "Tarawih", "Qiyam al-Layl"], correct: 0 },
+                { question: "Q124. What is the significance of the city of Jerusalem in Islam?", options: ["It is the third holiest city in Islam", "It is the birthplace of the Prophet Muhammad (PBUH)", "It is the location of the Kaaba", "It is where the Quran was revealed"], correct: 0 },
+                { question: "Q125. What is the name of the chapter in the Quran that is named after the Prophet Yusuf (Joseph)?", options: ["Surah Yusuf", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q126. Which prophet is known for being able to interpret dreams?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Sulaiman (Solomon)", "Prophet Ibrahim (Abraham)"], correct: 0 },
+                { question: "Q127. What is the Arabic term for the pilgrimage to Mecca that can be performed at any time of the year?", options: ["Umrah", "Hajj", "Tawaf", "Sa'i"], correct: 0 },
+                { question: "Q128. What is the significance of the city of Mecca in Islam?", options: ["It is the birthplace of the Prophet Muhammad (PBUH) and the location of the Kaaba", "It is where the Quran was revealed", "It is the third holiest city in Islam", "It is the site of the first mosque"], correct: 0 },
+                { question: "Q129. What is the Arabic term for the purification ritual performed before prayer?", options: ["Wudu", "Sawm", "Zakat", "Tawaf"], correct: 0 },
+                { question: "Q130. What is the name of the first surah in the Quran?", options: ["Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Ikhlas", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q131. Which prophet is known for being the father of the Prophets?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q132. What is the Arabic term for the call to prayer?", options: ["Adhan", "Iqamah", "Tawaf", "Sawm"], correct: 0 },
+                { question: "Q133. What is the name of the mountain where the Prophet Muhammad (PBUH) delivered his farewell sermon?", options: ["Mount Arafat", "Mount Hira", "Mount Uhud", "Mount Sinai"], correct: 0 },
+                { question: "Q134. Which prophet is known for being given the Zabur (Psalms)?", options: ["Prophet Dawud (David)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q135. What is the Arabic term for the obligatory charity given by Muslims?", options: ["Zakat", "Sadaqah", "Fitrah", "Khums"], correct: 0 },
+                { question: "Q136. Which prophet is known for leading the construction of the Kaaba?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q137. What is the Arabic term for the Friday sermon delivered before the congregational prayer?", options: ["Khutbah", "Iqamah", "Adhan", "Tawaf"], correct: 0 },
+                { question: "Q138. What is the significance of the month of Ramadan in Islam?", options: ["It is the month in which the Quran was revealed", "It is the first month of the Islamic calendar", "It is the month of Hajj", "It is the month of Eid al-Adha"], correct: 0 },
+                { question: "Q139. What is the Arabic term for the chapter of the Quran?", options: ["Surah", "Ayah", "Hadith", "Tawaf"], correct: 0 },
+                { question: "Q140. What is the Arabic term for the collection of sayings and actions of the Prophet Muhammad (PBUH)?", options: ["Hadith", "Sunnah", "Quran", "Fiqh"], correct: 0 },
+                { question: "Q141. What is the Arabic term for the practice of giving a portion of one's wealth to charity in Islam?", options: ["Zakat", "Sadaqah", "Khums", "Tawaf"], correct: 0 },
+                { question: "Q142. Which prophet is known for his wisdom and ruling with justice?", options: ["Prophet Sulaiman (Solomon)", "Prophet Dawud (David)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)"], correct: 0 },
+                { question: "Q143. What is the Arabic term for the sacred mosque in Mecca where Muslims perform Hajj?", options: ["Masjid al-Haram", "Masjid al-Nabawi", "Masjid al-Aqsa", "Masjid al-Quba"], correct: 0 },
+                { question: "Q144. What is the name of the angel who brought revelations to the Prophet Muhammad (PBUH)?", options: ["Jibril", "Mikail", "Israfil", "Azrael"], correct: 0 },
+                { question: "Q145. What is the Arabic term for the pilgrimage that is mandatory for Muslims who can afford it?", options: ["Hajj", "Umrah", "Zakat", "Sawm"], correct: 0 },
+                { question: "Q146. Which prophet is known for his patience and steadfastness through trials?", options: ["Prophet Ayyub (Job)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Yunus (Jonah)"], correct: 0 },
+                { question: "Q147. What is the name of the chapter in the Quran that discusses the story of the Prophet Yunus (Jonah)?", options: ["Surah As-Saffat", "Surah Al-Qamar", "Surah Yunus", "Surah Al-Mulk"], correct: 2 },
+                { question: "Q148. What is the name of the city where the Prophet Muhammad (PBUH) migrated after leaving Mecca?", options: ["Medina", "Mecca", "Jerusalem", "Ta'if"], correct: 0 },
+                { question: "Q149. What is the Arabic term for the religious tax paid by Muslims on their wealth?", options: ["Zakat", "Sadaqah", "Fitrah", "Khums"], correct: 0 },
+                { question: "Q150. Which prophet is known for his confrontation with Pharaoh and the miracles performed in Egypt?", options: ["Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Ibrahim (Abraham)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q151. What is the significance of the month of Ramadan in Islam?", options: ["It is the month of fasting and revelation of the Quran", "It is the month of Hajj", "It is the month of Eid al-Adha", "It is the first month of the Islamic calendar"], correct: 0 },
+                { question: "Q152. What is the name of the angel responsible for blowing the trumpet on the Day of Judgment?", options: ["Israfil", "Jibril", "Mikail", "Azrael"], correct: 0 },
+                { question: "Q153. Which prophet is known for being saved from the fire of Nimrod?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q154. What is the name of the chapter in the Quran that is known for its focus on the principles of justice and fairness?", options: ["Surah An-Nisa", "Surah Al-Baqarah", "Surah Al-Hujurat", "Surah Al-Ma'idah"], correct: 0 },
+                { question: "Q155. What is the name of the prophet who was given the ability to speak to animals and control the wind?", options: ["Prophet Sulaiman (Solomon)", "Prophet Dawud (David)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)"], correct: 0 },
+                { question: "Q156. What is the Arabic term for the day of judgment in Islam?", options: ["Yawm al-Qiyamah", "Yawm al-Jum'ah", "Yawm al-Hijrah", "Yawm al-Arafah"], correct: 0 },
+                { question: "Q157. Which prophet is known for his story of being swallowed by a big fish and later being saved?", options: ["Prophet Yunus (Jonah)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q158. What is the Arabic term for the practice of making a pilgrimage to Mecca during the month of Dhu al-Hijjah?", options: ["Hajj", "Umrah", "Tawaf", "Sa'i"], correct: 0 },
+                { question: "Q159. What is the significance of the night of Al-Qadr in Ramadan?", options: ["It is the night when the Quran was first revealed", "It is the night of the Prophet's ascent to heaven", "It is the night of the Battle of Badr", "It is the night when Hajj is performed"], correct: 0 },
+                { question: "Q160. What is the Arabic term for the act of giving voluntary charity in Islam?", options: ["Sadaqah", "Zakat", "Khums", "Fitrah"], correct: 0 },
+                { question: "Q161. Which prophet is known for being given the task to build the Kaaba?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q162. What is the Arabic term for the act of covering one's body in Islamic dress?", options: ["Hijab", "Niqab", "Chador", "Khimar"], correct: 0 },
+                { question: "Q163. What is the name of the chapter in the Quran that is known for its focus on the concept of faith and gratitude?", options: ["Surah Al-Baqarah", "Surah Al-Ankabut", "Surah Al-Ikhlas", "Surah Al-Kafirun"], correct: 0 },
+                { question: "Q164. Which prophet is known for his wisdom and being a judge in matters of faith?", options: ["Prophet Sulaiman (Solomon)", "Prophet Dawud (David)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)"], correct: 0 },
+                { question: "Q165. What is the Arabic term for the evening prayer in Islam?", options: ["Maghrib", "Isha", "Dhuhr", "Fajr"], correct: 0 },
+                { question: "Q166. What is the name of the chapter in the Quran that is known for its focus on the principles of social justice and ethics?", options: ["Surah An-Nisa", "Surah Al-Baqarah", "Surah Al-Ma'idah", "Surah Al-Hujurat"], correct: 0 },
+                { question: "Q167. What is the name of the angel who is known for bringing messages of guidance and revelation to the prophets?", options: ["Jibril", "Mikail", "Israfil", "Azrael"], correct: 0 },
+                { question: "Q168. What is the Arabic term for the month of fasting in Islam?", options: ["Ramadan", "Muharram", "Rajab", "Shawwal"], correct: 0 },
+                { question: "Q169. What is the name of the chapter in the Quran that is known for its focus on the creation of humanity and the story of Adam?", options: ["Surah Al-Baqarah", "Surah Al-A'raf", "Surah Al-Isra", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q170. What is the Arabic term for the practice of giving a portion of one's wealth to those in need during Ramadan?", options: ["Zakat al-Fitr", "Zakat", "Sadaqah", "Khums"], correct: 0 },
+                { question: "Q171. Which prophet is known for his journey from Mecca to Jerusalem and then to the heavens?", options: ["Prophet Muhammad (PBUH)", "Prophet Isa (Jesus)", "Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)"], correct: 0 },
+                { question: "Q172. What is the Arabic term for the act of seeking forgiveness from Allah?", options: ["Tawbah", "Dua", "Sadaqah", "Ibadah"], correct: 0 },
+                { question: "Q173. What is the name of the chapter in the Quran that is known for its focus on the concept of belief in Allah's unity?", options: ["Surah Al-Ikhlas", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Mulk"], correct: 0 },
+                { question: "Q174. Which prophet is known for his strength and battling against the enemies of Islam?", options: ["Prophet Muhammad (PBUH)", "Prophet Musa (Moses)", "Prophet Dawud (David)", "Prophet Yusuf (Joseph)"], correct: 0 },
+                { question: "Q175. What is the Arabic term for the celebration marking the end of Ramadan?", options: ["Eid al-Fitr", "Eid al-Adha", "Eid al-Mawlid", "Eid al-Ghadeer"], correct: 0 },
+                { question: "Q176. What is the Arabic term for the ritual act of walking around the Kaaba during Hajj?", options: ["Tawaf", "Sa'i", "Hajj", "Umrah"], correct: 0 },
+                { question: "Q177. What is the name of the chapter in the Quran that is known for its focus on the story of the Prophet Ibrahim (Abraham) and his family?", options: ["Surah Ibrahim", "Surah Al-Baqarah", "Surah Al-Ankabut", "Surah Al-Isra"], correct: 0 },
+                { question: "Q178. What is the name of the prophet who is known for being the father of Prophet Ismail (Ishmael)?", options: ["Prophet Ibrahim (Abraham)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q179. What is the Arabic term for the pre-dawn meal during Ramadan?", options: ["Suhoor", "Iftar", "Tawaf", "Sadaqah"], correct: 0 },
+                { question: "Q180. What is the Arabic term for the meal taken to break the fast during Ramadan?", options: ["Iftar", "Suhoor", "Sadaqah", "Khums"], correct: 0 },
+                { question: "Q181. What is the name of the chapter in the Quran that is known for its focus on the story of Prophet Yusuf (Joseph)?", options: ["Surah Yusuf", "Surah Al-Baqarah", "Surah Al-Ankabut", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q182. What is the Arabic term for the daily obligatory prayer offered at dawn?", options: ["Fajr", "Dhuhr", "Asr", "Maghrib"], correct: 0 },
+                { question: "Q183. Which prophet is known for his trials and endurance, especially being thrown into a well by his brothers?", options: ["Prophet Yusuf (Joseph)", "Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q184. What is the name of the chapter in the Quran that is known for its focus on the story of the Prophet Nuh (Noah)?", options: ["Surah Nuh", "Surah Al-Baqarah", "Surah Al-Ankabut", "Surah Al-Isra"], correct: 0 },
+                { question: "Q185. What is the Arabic term for the ritual of seeking forgiveness from Allah during the last ten days of Ramadan?", options: ["Itikaf", "Hajj", "Tawaf", "Zakat"], correct: 0 },
+                { question: "Q186. What is the significance of the city of Mecca in Islam?", options: ["It is the birthplace of the Prophet Muhammad (PBUH) and the location of the Kaaba", "It is where the Quran was revealed", "It is the third holiest city in Islam", "It is the site of the first mosque"], correct: 0 },
+                { question: "Q187. Which prophet is known for his role in the exodus of the Israelites from Egypt?", options: ["Prophet Musa (Moses)", "Prophet Ibrahim (Abraham)", "Prophet Yusuf (Joseph)", "Prophet Isa (Jesus)"], correct: 0 },
+                { question: "Q188. What is the Arabic term for the act of standing in prayer during the night in Ramadan?", options: ["Qiyam al-Layl", "Tawaf", "Sadaqah", "Suhoor"], correct: 0 },
+                { question: "Q189. What is the name of the chapter in the Quran that is known for its focus on the story of the Prophet Isa (Jesus)?", options: ["Surah Maryam", "Surah Al-Baqarah", "Surah Al-Imran", "Surah Al-Ma'idah"], correct: 0 },
+                { question: "Q190. What is the Arabic term for the spiritual retreat performed in the mosque during the last ten days of Ramadan?", options: ["Itikaf", "Hajj", "Umrah", "Sadaqah"], correct: 0 },
+                { question: "Q191. Which prophet is known for his ability to heal the sick and give life to the dead by Allah's permission?", options: ["Prophet Isa (Jesus)", "Prophet Musa (Moses)", "Prophet Yusuf (Joseph)", "Prophet Ibrahim (Abraham)"], correct: 0 },
+                { question: "Q192. What is the name of the chapter in the Quran that discusses the concept of Islamic monotheism?", options: ["Surah Al-Ikhlas", "Surah Al-Fatiha", "Surah Al-Baqarah", "Surah Al-Ma'idah"], correct: 0 },
+                { question: "Q193. What is the Arabic term for the act of offering prayers five times a day?", options: ["Salat", "Zakat", "Sawm", "Hajj"], correct: 0 },
+                { question: "Q194. Which prophet is known for his strength and bravery, and his story is mentioned in the context of the Battle of Badr?", options: ["Prophet Muhammad (PBUH)", "Prophet Musa (Moses)", "Prophet Dawud (David)", "Prophet Yusuf (Joseph)"], correct: 0 },
+                { question: "Q195. What is the name of the chapter in the Quran that focuses on the rules of family and inheritance?", options: ["Surah An-Nisa", "Surah Al-Baqarah", "Surah Al-Ma'idah", "Surah Al-Hujurat"], correct: 0 },
+                { question: "Q196. What is the Arabic term for the act of asking Allah for help and guidance?", options: ["Dua", "Sadaqah", "Tawbah", "Sawm"], correct: 0 },
+                { question: "Q197. What is the Arabic term for the act of fasting during the month of Ramadan?", options: ["Sawm", "Sadaqah", "Zakat", "Hajj"], correct: 0 },
+                { question: "Q198. What is the name of the chapter in the Quran that is known for its focus on the stories of the prophets?", options: ["Surah Anbiya", "Surah Al-Baqarah", "Surah Al-Imran", "Surah Al-Kahf"], correct: 0 },
+                { question: "Q199. What is the Arabic term for the community of Muslims worldwide?", options: ["Ummah", "Jama'ah", "Ahl", "Muwahhid"], correct: 0 },
+                { question: "Q200. What is the Arabic term for the collection of religious knowledge and jurisprudence derived from the Quran and Hadith?", options: ["Fiqh", "Sharia", "Sunnah", "Hadith"], correct: 0 }
+            ];
 
-            // ensure all languages have same length
-            const BASE_COUNT = questionBank.en.length;
-
-            // ---------- configuration ----------
-            const TOTAL_QUESTIONS = 2000;
-            let questionsIndices = [];          // length 2000, each 0..BASE_COUNT-1
+            const TOTAL_QUESTIONS = questions.length;
+            let questionsIndices = [];          // array of indices for random order
             let currentIndex = 0;
             let score = 0;
             let answered = false;
@@ -641,26 +449,26 @@
 
             totalQSpan.textContent = TOTAL_QUESTIONS;
 
-            // helper: generate random indices array
             function generateRandomIndices() {
                 const indices = [];
                 for (let i = 0; i < TOTAL_QUESTIONS; i++) {
-                    indices.push(Math.floor(Math.random() * BASE_COUNT));
+                    indices.push(i); // use original order (or random: Math.floor(Math.random() * TOTAL_QUESTIONS))
+                }
+                // shuffle to make it random (Fisher-Yates)
+                for (let i = indices.length - 1; i > 0; i--) {
+                    const j = Math.floor(Math.random() * (i + 1));
+                    [indices[i], indices[j]] = [indices[j], indices[i]];
                 }
                 return indices;
             }
 
-            // update UI texts based on current language
             function updateUILanguage() {
                 const ui = uiStrings[currentLang] || uiStrings.en;
                 scoreLabelSpan.textContent = ui.score;
                 headerQuestionsLabel.textContent = ui.headerQuestions;
-                // update dynamic button texts if they exist (handled in render)
-                // next/restart will be updated in renderQuestion
                 themeLabel.textContent = darkMode ? ui.themeLight : ui.themeDark;
             }
 
-            // restart / init
             function initQuiz() {
                 questionsIndices = generateRandomIndices();
                 currentIndex = 0;
@@ -675,7 +483,6 @@
                 scoreDisplay.textContent = score;
             }
 
-            // render current question based on currentLang
             function renderQuestion() {
                 if (currentIndex >= TOTAL_QUESTIONS) {
                     showResultScreen();
@@ -683,10 +490,8 @@
                 }
 
                 const baseIdx = questionsIndices[currentIndex];
-                const q = questionBank[currentLang][baseIdx];
-                if (!q) return; // fallback
+                const q = questions[baseIdx];
 
-                // progress
                 currentQNumSpan.textContent = currentIndex + 1;
                 const progressPercent = ((currentIndex + 1) / TOTAL_QUESTIONS) * 100;
                 progressFill.style.width = progressPercent + '%';
@@ -714,7 +519,6 @@
 
                 quizArea.innerHTML = html;
 
-                // attach listeners
                 document.querySelectorAll('.option-btn').forEach(btn => {
                     btn.addEventListener('click', optionClickHandler);
                 });
@@ -724,13 +528,12 @@
                 answered = false;
             }
 
-            // option click handler
             function optionClickHandler(e) {
                 if (answered) return;
                 const btn = e.currentTarget;
                 const optIndex = parseInt(btn.dataset.optIndex, 10);
                 const baseIdx = questionsIndices[currentIndex];
-                const correctIdx = questionBank[currentLang][baseIdx].correct;
+                const correctIdx = questions[baseIdx].correct;
 
                 document.querySelectorAll('.option-btn').forEach(b => b.classList.add('disabled'));
 
@@ -767,7 +570,7 @@
                 const completed = ui.completed;
                 const correctAns = ui.correctAnswers;
                 const correctly = ui.correctly;
-                html = `
+                const html = `
                     <div class="result-box">
                         <h3><i class="fas fa-trophy"></i> ${completed}</h3>
                         <p style="font-size: 48px; font-weight:800; color:#1b6e3d;">${score}/${TOTAL_QUESTIONS}</p>
@@ -781,29 +584,21 @@
                 progressFill.style.width = '100%';
             }
 
-            // language change
             languageSelect.addEventListener('change', (e) => {
-                const newLang = e.target.value;
-                currentLang = newLang;
-                // update RTL
-                if (newLang === 'ar' || newLang === 'ur') {
+                currentLang = e.target.value;
+                if (currentLang === 'ar' || currentLang === 'ur') {
                     bodyEl.classList.add('rtl');
                 } else {
                     bodyEl.classList.remove('rtl');
                 }
                 updateUILanguage();
-                renderQuestion();  // re-render with new language
+                renderQuestion();  // re-render to update button texts
             });
 
-            // theme toggle
             themeToggle.addEventListener('click', () => {
                 darkMode = !darkMode;
-                if (darkMode) {
-                    bodyEl.classList.add('dark-theme');
-                } else {
-                    bodyEl.classList.remove('dark-theme');
-                }
-                updateUILanguage(); // to reflect theme label (light/dark)
+                bodyEl.classList.toggle('dark-theme', darkMode);
+                updateUILanguage();
             });
 
             // initial load
