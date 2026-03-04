@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>Quranic Quiz · 2000+ · Islamic Unity</title>
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font: Inter & Amiri for Arabic/Urdu -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* light theme (default) */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #d9e8de;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            padding: 12px 0 20px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        body.dark-theme {
+            background: #1a2e24;
+        }
+
+        body.rtl {
+            direction: rtl;
+            font-family: 'Amiri', 'Inter', serif;
+        }
+
+        body.rtl .option-btn i {
+            transform: scaleX(-1);
+        }
+
+        /* main mobile card */
+        .phone-frame {
+            max-width: 420px;
+            width: 100%;
+            background-color: #ffffff;
+            border-radius: 32px 32px 24px 24px;
+            box-shadow: 0 10px 30px rgba(0, 40, 10, 0.15);
+            overflow: hidden;
+            margin: 8px 12px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .dark-theme .phone-frame {
+            background-color: #263f30;
+            color: #e2f0e6;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        /* header with gradient */
+        .app-header {
+            background: linear-gradient(145deg, #1b5e3f, #2a7a4b);
+            color: white;
+            padding: 16px 20px 12px 20px;
+            transition: background 0.2s;
+        }
+
+        .dark-theme .app-header {
+            background: linear-gradient(145deg, #0f3d28, #1e5737);
+        }
+
+        .app-header h2 {
+            font-size: 26px;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .app-header h2 i {
+            font-size: 30px;
+            color: #f9cf6b;
+        }
+
+        .app-header p {
+            font-size: 15px;
+            opacity: 0.95;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 8px 14px;
+            border-radius: 40px;
+            margin-top: 8px;
+        }
+
+        /* controls: language + theme */
+        .controls-bar {
+            background: white;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #c8e0d2;
+            transition: background 0.2s;
+        }
+
+        .dark-theme .controls-bar {
+            background: #1f3b29;
+            border-bottom: 1px solid #3c654a;
+        }
+
+        .lang-selector {
+            background: #eaf4ec;
+            border: none;
+            border-radius: 40px;
+            padding: 6px 16px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #1b4e3a;
+            outline: none;
+            cursor: pointer;
+            border: 1px solid #bcd0c0;
+        }
+
+        .dark-theme .lang-selector {
+            background: #2e4d39;
+            color: #e2f0e6;
+            border-color: #4f735b;
+        }
+
+        .theme-toggle {
+            background: #eaf4ec;
+            border: none;
+            border-radius: 40px;
+            padding: 8px 20px;
+            font-size: 16px;
+            font-weight: 600;
+            color: #1b4e3a;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #bcd0c0;
+        }
+
+        .dark-theme .theme-toggle {
+            background: #2e4d39;
+            color: #f0f7e8;
+            border-color: #4f735b;
+        }
+
+        .score-panel {
+            display: flex;
+            justify-content: space-between;
+            background: #f2faf5;
+            padding: 14px 22px;
+            border-bottom: 1px solid #c8e0d2;
+            font-weight: 600;
+            color: #1d5e3b;
+            transition: background 0.2s;
+        }
+
+        .dark-theme .score-panel {
+            background: #274230;
+            color: #daf0df;
+            border-bottom: 1px solid #3c654a;
+        }
+
+        .score-panel span {
+            background: white;
+            padding: 5px 16px;
+            border-radius: 40px;
+            font-size: 20px;
+            color: #0f4f2d;
+            border: 1px solid #b1d5bd;
+        }
+
+        .dark-theme .score-panel span {
+            background: #1b3625;
+            color: #e2f0e6;
+            border-color: #4f735b;
+        }
+
+        .progress-container {
+            padding: 8px 20px 0;
+            background: white;
+            transition: background 0.2s;
+        }
+
+        .dark-theme .progress-container {
+            background: #263f30;
+        }
+
+        .progress-bar-bg {
+            background: #dcf0e3;
+            height: 10px;
+            border-radius: 20px;
+            margin: 10px 0 4px;
+        }
+
+        .dark-theme .progress-bar-bg {
+            background: #3d5e4a;
+        }
+
+        .progress-fill {
+            height: 10px;
+            background: #2a7a4b;
+            border-radius: 20px;
+            width: 0%;
+            transition: width 0.2s ease;
+        }
+
+        .question-number {
+            font-size: 14px;
+            color: #3b6c50;
+            font-weight: 600;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .dark-theme .question-number {
+            color: #b5dac4;
+        }
+
+        /* quiz card */
+        .quiz-card {
+            padding: 24px 20px 20px;
+            background: white;
+            transition: background 0.2s;
+        }
+
+        .dark-theme .quiz-card {
+            background: #263f30;
+        }
+
+        .question-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1a4630;
+            line-height: 1.4;
+            margin-bottom: 24px;
+            background: #ecf9f0;
+            padding: 20px 18px;
+            border-radius: 28px;
+            border: 1px solid #bcddc8;
+        }
+
+        .dark-theme .question-text {
+            background: #1d3d2a;
+            color: #e2f0e6;
+            border-color: #3c654a;
+        }
+
+        .options-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+
+        .option-btn {
+            background: white;
+            border: 2px solid #c2e0ce;
+            border-radius: 50px;
+            padding: 16px 22px;
+            font-size: 17px;
+            font-weight: 500;
+            color: #144e2d;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.1s;
+            box-shadow: 0 2px 6px rgba(0,30,0,0.02);
+            cursor: pointer;
+        }
+
+        .dark-theme .option-btn {
+            background: #2f4f38;
+            border-color: #4f735b;
+            color: #e2f0e6;
+        }
+
+        .option-btn i {
+            font-size: 22px;
+            color: #2a7a4b;
+            width: 28px;
+        }
+
+        .dark-theme .option-btn i {
+            color: #9fd3b2;
+        }
+
+        .option-btn.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .option-btn.correct {
+            background: #b8e6c9;
+            border-color: #1e7e48;
+            color: #0a4524;
+        }
+
+        .dark-theme .option-btn.correct {
+            background: #1f6f3c;
+            border-color: #6ec184;
+            color: #ffffff;
+        }
+
+        .option-btn.wrong {
+            background: #ffdddd;
+            border-color: #c55a5a;
+            color: #721c1c;
+        }
+
+        .dark-theme .option-btn.wrong {
+            background: #813535;
+            border-color: #b57a7a;
+            color: #ffdbdb;
+        }
+
+        .next-btn {
+            background: #2a7a4b;
+            border: none;
+            color: white;
+            font-size: 20px;
+            font-weight: 700;
+            padding: 18px 20px;
+            border-radius: 60px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            box-shadow: 0 6px 14px rgba(26, 100, 50, 0.3);
+            margin-bottom: 14px;
+            cursor: pointer;
+            transition: 0.2s;
+            border: 1px solid #19633b;
+        }
+
+        .dark-theme .next-btn {
+            background: #1b6e3b;
+            box-shadow: 0 4px 10px #0f3d28;
+        }
+
+        .next-btn:disabled {
+            background: #b2d5be;
+            box-shadow: none;
+            cursor: not-allowed;
+            border-color: #90af9b;
+        }
+
+        .restart-btn {
+            background: transparent;
+            border: 2px solid #2a7a4b;
+            color: #2a7a4b;
+            font-size: 17px;
+            font-weight: 600;
+            padding: 14px;
+            border-radius: 60px;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: 0.2s;
+        }
+
+        .dark-theme .restart-btn {
+            border-color: #7eb392;
+            color: #b2e2c4;
+        }
+
+        .footer-app {
+            background: #1d3e2d;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .dark-theme .footer-app {
+            background: #0d2a1b;
+        }
+
+        .download-btn {
+            display: inline-block;
+            background: #fbbf24;
+            color: #1d3e2d;
+            font-weight: 700;
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            border: 1px solid #fcd34d;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: 0.2s;
+            margin-bottom: 8px;
+        }
+
+        .download-btn i {
+            margin-right: 8px;
+        }
+
+        .result-box {
+            background: #e3f3e9;
+            border-radius: 40px;
+            padding: 32px 20px;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .dark-theme .result-box {
+            background: #1d3d2a;
+            color: #e2f0e6;
+        }
+    </style>
+</head>
+<body>
+    <div class="phone-frame" id="appFrame">
+        <!-- header -->
+        <div class="app-header">
+            <h2><i class="fas fa-book-open"></i> Quranic Quiz</h2>
+            <p><i class="fas fa-database"></i> <span id="questionCountDisplay">2000+</span> <span id="headerQuestionsLabel">questions</span></p>
+        </div>
+
+        <!-- controls: language & theme -->
+        <div class="controls-bar">
+            <select id="languageSelect" class="lang-selector">
+                <option value="en">English</option>
+                <option value="hi">हिन्दी</option>
+                <option value="ur">اردو</option>
+                <option value="ar">العربية</option>
+            </select>
+            <button id="themeToggle" class="theme-toggle"><i class="fas fa-moon"></i> <span id="themeLabel">Dark</span></button>
+        </div>
+
+        <!-- score & progress -->
+        <div class="score-panel">
+            <span><i class="fas fa-star" style="color: #f5b342;"></i> <span id="scoreLabel">Score</span></span>
+            <span id="scoreDisplay">0</span>
+        </div>
+        <div class="progress-container">
+            <div class="question-number">
+                <span id="currentQNum">1</span> / <span id="totalQ">2000</span>
+            </div>
+            <div class="progress-bar-bg">
+                <div class="progress-fill" id="progressFill" style="width: 0%;"></div>
+            </div>
+        </div>
+
+        <!-- dynamic quiz area -->
+        <div id="quizArea" class="quiz-card">
+            <!-- injected -->
+        </div>
+
+        <!-- footer with app link -->
+        <div class="footer-app">
+            <a href="https://play.google.com/store/apps/details?id=com.islamicunity.android&hl=en_IN" target="_blank" class="download-btn">
+                <i class="fab fa-google-play"></i> Islamic Unity App
+            </a>
+            <div class="footer-note">GET IT ON Google Play · more quizzes & features</div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            // ---------- MULTI-LANGUAGE UI STRINGS ----------
+            const uiStrings = {
+                en: { score: "Score", next: "Next Question", restart: "Restart Quiz", completed: "Quiz completed!", correctAnswers: "You answered", correctly: "correctly.", themeDark: "Dark", themeLight: "Light", headerQuestions: "questions", tapForOptions: "Tap option" },
+                hi: { score: "स्कोर", next: "अगला प्रश्न", restart: "फिर से शुरू करें", completed: "प्रश्नोत्तरी पूरी हुई!", correctAnswers: "आपने सही उत्तर दिए", correctly: "सही।", themeDark: "डार्क", themeLight: "लाइट", headerQuestions: "प्रश्न" },
+                ur: { score: "اسکور", next: "اگلا سوال", restart: "دوبارہ شروع کریں", completed: "کوئز مکمل ہوا!", correctAnswers: "آپ نے درست جواب دیے", correctly: "درست۔", themeDark: "ڈارک", themeLight: "لائٹ", headerQuestions: "سوالات" },
+                ar: { score: "النقاط", next: "السؤال التالي", restart: "إعادة التشغيل", completed: "اكتمل الاختبار!", correctAnswers: "لقد أجبت بشكل صحيح", correctly: "إجابة صحيحة.", themeDark: "داكن", themeLight: "فاتح", headerQuestions: "سؤال" }
+            };
+
+            // ---------- QUESTION BANK (30 base questions in 4 languages) ----------
+            const questionBank = {
+                en: [
+                    { question: "What is the first Surah in the Quran?", options: ["Al-Fatiha", "Al-Baqarah", "Al-Ikhlas", "An-Nas"], correct: 0 },
+                    { question: "How many Surahs are in the Quran?", options: ["114", "115", "113", "116"], correct: 0 },
+                    { question: "Which prophet is known as 'Khalilullah' (Friend of Allah)?", options: ["Musa", "Isa", "Ibrahim", "Muhammad"], correct: 2 },
+                    { question: "What is the longest Surah in the Quran?", options: ["Al-Baqarah", "Aal-Imran", "An-Nisa", "Al-A'raf"], correct: 0 },
+                    { question: "Which Surah is known as the 'Heart of the Quran'?", options: ["Yasin", "Rahman", "Mulk", "Ikhlas"], correct: 0 },
+                    { question: "In which Surah is the story of Prophet Yusuf (AS) told in detail?", options: ["Yusuf", "Hud", "Ibrahim", "Saad"], correct: 0 },
+                    { question: "What is the smallest Surah (by number of verses)?", options: ["Al-Kawthar", "Al-Ikhlas", "An-Nasr", "Al-Asr"], correct: 0 },
+                    { question: "Which Surah does NOT begin with Bismillah?", options: ["At-Tawbah", "Al-Fatiha", "An-Naml", "Al-Baqarah"], correct: 0 },
+                    { question: "How many verses are in Surah Al-Fatiha?", options: ["7", "6", "8", "5"], correct: 0 },
+                    { question: "Which angel brought revelation to Prophet Muhammad ﷺ?", options: ["Jibril", "Mika'il", "Israfil", "Malik"], correct: 0 },
+                    { question: "Obligatory charity in Islam is called:", options: ["Zakat", "Sadaqah", "Khums", "Fidya"], correct: 0 },
+                    { question: "Fasting during which month is obligatory?", options: ["Ramadan", "Muharram", "Shawwal", "Dhul Hijjah"], correct: 0 },
+                    { question: "What is the first pillar of Islam?", options: ["Shahada", "Salah", "Zakat", "Sawm"], correct: 0 },
+                    { question: "Which prayer is performed at dawn?", options: ["Fajr", "Dhuhr", "Asr", "Maghrib"], correct: 0 },
+                    { question: "How many fard rakats are in Maghrib prayer?", options: ["3", "2", "4", "1"], correct: 0 },
+                    { question: "Which Surah is called 'Umm al-Kitab'?", options: ["Al-Fatiha", "Al-Baqarah", "Yasin", "Al-Ikhlas"], correct: 0 },
+                    { question: "Who was the first caliph after Prophet Muhammad ﷺ?", options: ["Abu Bakr", "Umar", "Uthman", "Ali"], correct: 0 },
+                    { question: "Where was the first revelation revealed?", options: ["Cave Hira", "Cave Thawr", "Masjid Nabawi", "Masjid Aqsa"], correct: 0 },
+                    { question: "Which prophet was swallowed by a whale?", options: ["Yunus", "Musa", "Ayyub", "Yusuf"], correct: 0 },
+                    { question: "Which prophet was granted the miracle of splitting the sea?", options: ["Musa", "Isa", "Ibrahim", "Nuh"], correct: 0 },
+                    { question: "What is the last Surah of the Quran?", options: ["An-Nas", "Al-Ikhlas", "Al-Falaq", "Al-Kawthar"], correct: 0 },
+                    { question: "Which surah contains Ayat al-Kursi?", options: ["Al-Baqarah", "Aal-Imran", "Al-Ma'idah", "Al-Hashr"], correct: 0 },
+                    { question: "What is the meaning of 'Alhamdulillah'?", options: ["Praise be to Allah", "Allah is great", "Glory to Allah", "There is no god but Allah"], correct: 0 },
+                    { question: "Which companion was known as 'Al-Siddiq'?", options: ["Abu Bakr", "Umar", "Uthman", "Ali"], correct: 0 },
+                    { question: "Which prophet rebuilt the Kaaba with his son Ismail?", options: ["Ibrahim", "Nuh", "Musa", "Dawud"], correct: 0 },
+                    { question: "Which surah tells the story of the elephant army?", options: ["Al-Fil", "Quraish", "Al-Ma'un", "Al-Kawthar"], correct: 0 },
+                    { question: "How many Juz' are there in the Quran?", options: ["30", "29", "31", "28"], correct: 0 },
+                    { question: "Another name for Surah Al-Fatiha is:", options: ["The Opening", "The Cow", "The Family of Imran", "The Table"], correct: 0 },
+                    { question: "What was the first word revealed?", options: ["Iqra (Read)", "Alhamdulillah", "Bismillah", "Yā ayyuha"], correct: 0 },
+                    { question: "Which prophet was given the Zabur (Psalms)?", options: ["Dawud", "Sulaiman", "Musa", "Isa"], correct: 0 }
+                ],
+                hi: [
+                    { question: "कुरान की पहली सूरह कौन सी है?", options: ["अल-फातिहा", "अल-बकरा", "अल-इखलास", "अन-नास"], correct: 0 },
+                    { question: "कुरान में कितनी सूरह हैं?", options: ["114", "115", "113", "116"], correct: 0 },
+                    { question: "किस नबी को 'खलीलुल्लाह' कहा जाता है?", options: ["मूसा", "ईसा", "इब्राहीम", "मुहम्मद"], correct: 2 },
+                    { question: "सबसे लंबी सूरह कौन सी है?", options: ["अल-बकरा", "आल-इमरान", "अन-निसा", "अल-आराफ"], correct: 0 },
+                    { question: "किस सूरह को 'कुरान का दिल' कहा जाता है?", options: ["यासीन", "रहमान", "मुल्क", "इखलास"], correct: 0 },
+                    { question: "किस सूरह में यूसुफ (अ) की कहानी विस्तार से है?", options: ["यूसुफ", "हूद", "इब्राहीम", "साद"], correct: 0 },
+                    { question: "सबसे छोटी सूरह कौन सी है?", options: ["अल-कौसर", "अल-इखलास", "अन-नस्र", "अल-अस्र"], correct: 0 },
+                    { question: "कौन सी सूरह बिस्मिल्लाह से शुरू नहीं होती?", options: ["अत-तौबा", "अल-फातिहा", "अन-नम्ल", "अल-बकरा"], correct: 0 },
+                    { question: "सूरह अल-फातिहा में कितनी आयतें हैं?", options: ["7", "6", "8", "5"], correct: 0 },
+                    { question: "पैगंबर ﷺ पर वही लाने वाले फरिश्ते कौन थे?", options: ["जिब्रील", "मीकाईल", "इसराफील", "मालिक"], correct: 0 },
+                    { question: "इस्लाम में अनिवार्य दान को क्या कहते हैं?", options: ["ज़कात", "सदक़ा", "खुम्स", "फिद्या"], correct: 0 },
+                    { question: "किस महीने में रोज़ा अनिवार्य है?", options: ["रमज़ान", "मुहर्रम", "शव्वाल", "ज़ुल-हिज्जा"], correct: 0 },
+                    { question: "इस्लाम का पहला स्तंभ क्या है?", options: ["शहादा", "नमाज़", "ज़कात", "रोज़ा"], correct: 0 },
+                    { question: "कौन सी नमाज़ सुबह सवेरे पढ़ी जाती है?", options: ["फज्र", "ज़ुहर", "अस्र", "मग़रिब"], correct: 0 },
+                    { question: "मग़रिब की नमाज़ में कितनी फर्ज रकात हैं?", options: ["3", "2", "4", "1"], correct: 0 },
+                    { question: "किस सूरह को 'उम्मुल किताब' कहा जाता है?", options: ["अल-फातिहा", "अल-बकरा", "यासीन", "अल-इखलास"], correct: 0 },
+                    { question: "पैगंबर ﷺ के बाद पहले खलीफा कौन थे?", options: ["अबू बक्र", "उमर", "उस्मान", "अली"], correct: 0 },
+                    { question: "पहली वही कहाँ नाज़िल हुई?", options: ["गारे हिरा", "गारे सौर", "मस्जिद नबवी", "मस्जिद अक्सा"], correct: 0 },
+                    { question: "किस नबी को मछली ने निगल लिया था?", options: ["यूनुस", "मूसा", "अय्यूब", "यूसुफ"], correct: 0 },
+                    { question: "किस नबी को समुद्र के विभाजन का चमत्कार मिला?", options: ["मूसा", "ईसा", "इब्राहीम", "नूह"], correct: 0 },
+                    { question: "कुरान की आखिरी सूरह कौन सी है?", options: ["अन-नास", "अल-इखलास", "अल-फलक", "अल-कौसर"], correct: 0 },
+                    { question: "किस सूरह में आयत अल-कुर्सी है?", options: ["अल-बकरा", "आल-इमरान", "अल-माइदा", "अल-हश्र"], correct: 0 },
+                    { question: "'अल्हम्दुलिल्लाह' का क्या अर्थ है?", options: ["तमाम तारीफें अल्लाह के लिए", "अल्लाह सबसे बड़ा", "अल्लाह पाक है", "अल्लाह के सिवा कोई माबूद नहीं"], correct: 0 },
+                    { question: "किस सहाबी को 'अल-सिद्दीक' कहा जाता है?", options: ["अबू बक्र", "उमर", "उस्मान", "अली"], correct: 0 },
+                    { question: "किस नबी ने अपने बेटे इस्माइल के साथ काबा का पुनर्निर्माण किया?", options: ["इब्राहीम", "नूह", "मूसा", "दाऊद"], correct: 0 },
+                    { question: "हाथी सेना की कहानी किस सूरह में है?", options: ["अल-फील", "कुरैश", "अल-माऊन", "अल-कौसर"], correct: 0 },
+                    { question: "कुरान में कितने जुज़ हैं?", options: ["30", "29", "31", "28"], correct: 0 },
+                    { question: "सूरह अल-फातिहा का दूसरा नाम क्या है?", options: ["उम्मुल किताब", "अल-बकरा", "आल-इमरान", "अल-माइदा"], correct: 0 },
+                    { question: "पहली बार कौन सा शब्द नाज़िल हुआ?", options: ["इक़रा (पढ़ो)", "अल्हम्दुलिल्लाह", "बिस्मिल्लाह", "या अय्युहा"], correct: 0 },
+                    { question: "किस नबी को ज़बूर दी गई?", options: ["दाऊद", "सुलेमान", "मूसा", "ईसा"], correct: 0 }
+                ],
+                ur: [
+                    { question: "قرآن کی پہلی سورت کون سی ہے؟", options: ["الفاتحہ", "البقرہ", "الاخلاص", "الناس"], correct: 0 },
+                    { question: "قرآن میں کتنی سورتیں ہیں؟", options: ["114", "115", "113", "116"], correct: 0 },
+                    { question: "کون سے نبی 'خلیل اللہ' کہلاتے ہیں؟", options: ["موسیٰ", "عیسیٰ", "ابراہیم", "محمد"], correct: 2 },
+                    { question: "سب سے لمبی سورت کون سی ہے؟", options: ["البقرہ", "آل عمران", "النساء", "الاعراف"], correct: 0 },
+                    { question: "کون سی سورت 'قلب قرآن' کہلاتی ہے؟", options: ["یٰسین", "الرحمن", "الملک", "الاخلاص"], correct: 0 },
+                    { question: "یوسف علیہ السلام کا قصہ مفصل کس سورت میں ہے؟", options: ["یوسف", "ھود", "ابراہیم", "ص"], correct: 0 },
+                    { question: "سب سے چھوٹی سورت کون سی ہے؟", options: ["الکوثر", "الاخلاص", "النصر", "العصر"], correct: 0 },
+                    { question: "کس سورت کا آغاز بسم اللہ سے نہیں ہوتا؟", options: ["التوبہ", "الفاتحہ", "النمل", "البقرہ"], correct: 0 },
+                    { question: "سورہ الفاتحہ میں کتنی آیات ہیں؟", options: ["7", "6", "8", "5"], correct: 0 },
+                    { question: "نبی کریم ﷺ پر وحی لانے والے فرشتے کا نام؟", options: ["جبریل", "میکائیل", "اسرافیل", "مالک"], correct: 0 },
+                    { question: "اسلام میں فرض صدقہ کا نام؟", options: ["زکوٰۃ", "صدقہ", "خمس", "فدیہ"], correct: 0 },
+                    { question: "کس مہینے کے روزے فرض ہیں؟", options: ["رمضان", "محرم", "شوال", "ذوالحجہ"], correct: 0 },
+                    { question: "اسلام کا پہلا رکن کیا ہے؟", options: ["شہادت", "نماز", "زکوٰۃ", "روزہ"], correct: 0 },
+                    { question: "صبح کی نماز کا نام؟", options: ["فجر", "ظہر", "عصر", "مغرب"], correct: 0 },
+                    { question: "مغرب کی نماز میں کتنی فرض رکعات ہیں؟", options: ["3", "2", "4", "1"], correct: 0 },
+                    { question: "کس سورت کو 'ام الکتاب' کہا جاتا ہے؟", options: ["الفاتحہ", "البقرہ", "یٰسین", "الاخلاص"], correct: 0 },
+                    { question: "نبی ﷺ کے بعد پہلے خلیفہ کون تھے؟", options: ["ابوبکر", "عمر", "عثمان", "علی"], correct: 0 },
+                    { question: "پہلی وحی کہاں نازل ہوئی؟", options: ["غار حرا", "غار ثور", "مسجد نبوی", "مسجد اقصیٰ"], correct: 0 },
+                    { question: "کون سے نبی کو مچھلی نے نگل لیا تھا؟", options: ["یونس", "موسیٰ", "ایوب", "یوسف"], correct: 0 },
+                    { question: "کس نبی کو سمندر کے پھٹنے کا معجزہ ملا؟", options: ["موسیٰ", "عیسیٰ", "ابراہیم", "نوح"], correct: 0 },
+                    { question: "قرآن کی آخری سورت کون سی ہے؟", options: ["الناس", "الاخلاص", "الفلق", "الکوثر"], correct: 0 },
+                    { question: "آیت الکرسی کس سورت میں ہے؟", options: ["البقرہ", "آل عمران", "المائدہ", "الحشر"], correct: 0 },
+                    { question: "'الحمدللہ' کا مطلب کیا ہے؟", options: ["تمام تعریفیں اللہ کے لیے", "اللہ بہت بڑا ہے", "اللہ پاک ہے", "اللہ کے سوا کوئی معبود نہیں"], correct: 0 },
+                    { question: "کون سے صحابی 'الصدیق' کہلاتے ہیں؟", options: ["ابوبکر", "عمر", "عثمان", "علی"], correct: 0 },
+                    { question: "کس نبی نے اپنے بیٹے اسماعیل کے ساتھ خانہ کعبہ تعمیر کیا؟", options: ["ابراہیم", "نوح", "موسیٰ", "داود"], correct: 0 },
+                    { question: "اصحاب الفیل کا واقعہ کس سورت میں ہے؟", options: ["الفیل", "قریش", "الماعون", "الکوثر"], correct: 0 },
+                    { question: "قرآن کے کتنے پارے ہیں؟", options: ["30", "29", "31", "28"], correct: 0 },
+                    { question: "سورہ الفاتحہ کا دوسرا نام کیا ہے؟", options: ["ام الکتاب", "البقرہ", "آل عمران", "المائدہ"], correct: 0 },
+                    { question: "سب سے پہلے کون سا لفظ نازل ہوا؟", options: ["اقرأ (پڑھ)", "الحمدللہ", "بسم اللہ", "یا ایہا"], correct: 0 },
+                    { question: "کس نبی کو زبور دی گئی؟", options: ["داود", "سلیمان", "موسیٰ", "عیسیٰ"], correct: 0 }
+                ],
+                ar: [
+                    { question: "ما هي أول سورة في القرآن؟", options: ["الفاتحة", "البقرة", "الإخلاص", "الناس"], correct: 0 },
+                    { question: "كم عدد سور القرآن؟", options: ["114", "115", "113", "116"], correct: 0 },
+                    { question: "من هو النبي الملقب بخليل الله؟", options: ["موسى", "عيسى", "إبراهيم", "محمد"], correct: 2 },
+                    { question: "ما هي أطول سورة في القرآن؟", options: ["البقرة", "آل عمران", "النساء", "الأعراف"], correct: 0 },
+                    { question: "ما هي السورة التي تسمى قلب القرآن؟", options: ["يس", "الرحمن", "الملك", "الإخلاص"], correct: 0 },
+                    { question: "في أي سورة وردت قصة يوسف عليه السلام بالتفصيل؟", options: ["يوسف", "هود", "إبراهيم", "ص"], correct: 0 },
+                    { question: "ما هي أقصر سورة في القرآن؟", options: ["الكوثر", "الإخلاص", "النصر", "العصر"], correct: 0 },
+                    { question: "ما هي السورة التي لا تبدأ بالبسملة؟", options: ["التوبة", "الفاتحة", "النمل", "البقرة"], correct: 0 },
+                    { question: "كم عدد آيات سورة الفاتحة؟", options: ["7", "6", "8", "5"], correct: 0 },
+                    { question: "من هو الملك الذي نزل بالوحي على النبي ﷺ؟", options: ["جبريل", "ميكائيل", "إسرافيل", "مالك"], correct: 0 },
+                    { question: "ما اسم الصدقة الواجبة في الإسلام؟", options: ["الزكاة", "صدقة", "الخمس", "الفدية"], correct: 0 },
+                    { question: "صوم أي شهر فرض؟", options: ["رمضان", "محرم", "شوال", "ذو الحجة"], correct: 0 },
+                    { question: "ما هو الركن الأول من أركان الإسلام؟", options: ["الشهادة", "الصلاة", "الزكاة", "الصوم"], correct: 0 },
+                    { question: "ما هي الصلاة التي تؤدى عند الفجر؟", options: ["الفجر", "الظهر", "العصر", "المغرب"], correct: 0 },
+                    { question: "كم عدد ركعات الفرض في صلاة المغرب؟", options: ["3", "2", "4", "1"], correct: 0 },
+                    { question: "ما هي السورة التي تسمى أم الكتاب؟", options: ["الفاتحة", "البقرة", "يس", "الإخلاص"], correct: 0 },
+                    { question: "من هو أول الخلفاء الراشدين بعد النبي ﷺ؟", options: ["أبو بكر", "عمر", "عثمان", "علي"], correct: 0 },
+                    { question: "أين نزل الوحي أول مرة؟", options: ["غار حراء", "غار ثور", "المسجد النبوي", "المسجد الأقصى"], correct: 0 },
+                    { question: "أي نبي ابتلعه الحوت؟", options: ["يونس", "موسى", "أيوب", "يوسف"], correct: 0 },
+                    { question: "أي نبي أعطي معجزة شق البحر؟", options: ["موسى", "عيسى", "إبراهيم", "نوح"], correct: 0 },
+                    { question: "ما هي آخر سورة في القرآن؟", options: ["الناس", "الإخلاص", "الفلق", "الكوثر"], correct: 0 },
+                    { question: "أي سورة تحتوي على آية الكرسي؟", options: ["البقرة", "آل عمران", "المائدة", "الحشر"], correct: 0 },
+                    { question: "ما معنى 'الحمد لله'؟", options: ["الثناء لله", "الله أكبر", "سبحان الله", "لا إله إلا الله"], correct: 0 },
+                    { question: "من هو الصحابي الملقب بالصديق؟", options: ["أبو بكر", "عمر", "عثمان", "علي"], correct: 0 },
+                    { question: "أي نبي بنى الكعبة مع ابنه إسماعيل؟", options: ["إبراهيم", "نوح", "موسى", "داود"], correct: 0 },
+                    { question: "ما هي السورة التي تتحدث عن أصحاب الفيل؟", options: ["الفيل", "قريش", "الماعون", "الكوثر"], correct: 0 },
+                    { question: "كم جزءاً في القرآن؟", options: ["30", "29", "31", "28"], correct: 0 },
+                    { question: "ما هو الاسم الآخر لسورة الفاتحة؟", options: ["أم الكتاب", "البقرة", "آل عمران", "المائدة"], correct: 0 },
+                    { question: "ما هي أول كلمة نزلت من القرآن؟", options: ["اقرأ", "الحمد لله", "بسم الله", "يا أيها"], correct: 0 },
+                    { question: "أي نبي أنزل عليه الزبور؟", options: ["داود", "سليمان", "موسى", "عيسى"], correct: 0 }
+                ]
+            };
+
+            // ensure all languages have same length
+            const BASE_COUNT = questionBank.en.length;
+
+            // ---------- configuration ----------
+            const TOTAL_QUESTIONS = 2000;
+            let questionsIndices = [];          // length 2000, each 0..BASE_COUNT-1
+            let currentIndex = 0;
+            let score = 0;
+            let answered = false;
+            let currentLang = 'en';
+            let darkMode = false;
+
+            // DOM elements
+            const quizArea = document.getElementById('quizArea');
+            const scoreDisplay = document.getElementById('scoreDisplay');
+            const currentQNumSpan = document.getElementById('currentQNum');
+            const totalQSpan = document.getElementById('totalQ');
+            const progressFill = document.getElementById('progressFill');
+            const languageSelect = document.getElementById('languageSelect');
+            const themeToggle = document.getElementById('themeToggle');
+            const themeLabel = document.getElementById('themeLabel');
+            const scoreLabelSpan = document.getElementById('scoreLabel');
+            const headerQuestionsLabel = document.getElementById('headerQuestionsLabel');
+            const bodyEl = document.body;
+
+            totalQSpan.textContent = TOTAL_QUESTIONS;
+
+            // helper: generate random indices array
+            function generateRandomIndices() {
+                const indices = [];
+                for (let i = 0; i < TOTAL_QUESTIONS; i++) {
+                    indices.push(Math.floor(Math.random() * BASE_COUNT));
+                }
+                return indices;
+            }
+
+            // update UI texts based on current language
+            function updateUILanguage() {
+                const ui = uiStrings[currentLang] || uiStrings.en;
+                scoreLabelSpan.textContent = ui.score;
+                headerQuestionsLabel.textContent = ui.headerQuestions;
+                // update dynamic button texts if they exist (handled in render)
+                // next/restart will be updated in renderQuestion
+                themeLabel.textContent = darkMode ? ui.themeLight : ui.themeDark;
+            }
+
+            // restart / init
+            function initQuiz() {
+                questionsIndices = generateRandomIndices();
+                currentIndex = 0;
+                score = 0;
+                answered = false;
+                updateScore();
+                renderQuestion();
+                updateUILanguage();
+            }
+
+            function updateScore() {
+                scoreDisplay.textContent = score;
+            }
+
+            // render current question based on currentLang
+            function renderQuestion() {
+                if (currentIndex >= TOTAL_QUESTIONS) {
+                    showResultScreen();
+                    return;
+                }
+
+                const baseIdx = questionsIndices[currentIndex];
+                const q = questionBank[currentLang][baseIdx];
+                if (!q) return; // fallback
+
+                // progress
+                currentQNumSpan.textContent = currentIndex + 1;
+                const progressPercent = ((currentIndex + 1) / TOTAL_QUESTIONS) * 100;
+                progressFill.style.width = progressPercent + '%';
+
+                const ui = uiStrings[currentLang] || uiStrings.en;
+                const nextText = ui.next;
+                const restartText = ui.restart;
+
+                let html = `
+                    <div class="question-text">${q.question}</div>
+                    <div class="options-grid" id="optionsGrid">
+                `;
+
+                q.options.forEach((opt, idx) => {
+                    html += `
+                        <div class="option-btn" data-opt-index="${idx}">
+                            <i class="fas fa-circle"></i> ${opt}
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                html += `<button class="next-btn" id="nextBtn" disabled><i class="fas fa-arrow-right"></i> ${nextText}</button>`;
+                html += `<button class="restart-btn" id="restartBtn"><i class="fas fa-rotate-right"></i> ${restartText}</button>`;
+
+                quizArea.innerHTML = html;
+
+                // attach listeners
+                document.querySelectorAll('.option-btn').forEach(btn => {
+                    btn.addEventListener('click', optionClickHandler);
+                });
+                document.getElementById('nextBtn').addEventListener('click', nextHandler);
+                document.getElementById('restartBtn').addEventListener('click', () => initQuiz());
+
+                answered = false;
+            }
+
+            // option click handler
+            function optionClickHandler(e) {
+                if (answered) return;
+                const btn = e.currentTarget;
+                const optIndex = parseInt(btn.dataset.optIndex, 10);
+                const baseIdx = questionsIndices[currentIndex];
+                const correctIdx = questionBank[currentLang][baseIdx].correct;
+
+                document.querySelectorAll('.option-btn').forEach(b => b.classList.add('disabled'));
+
+                if (optIndex === correctIdx) {
+                    btn.classList.add('correct');
+                    score++;
+                    updateScore();
+                } else {
+                    btn.classList.add('wrong');
+                    document.querySelectorAll('.option-btn').forEach(b => {
+                        if (parseInt(b.dataset.optIndex) === correctIdx) {
+                            b.classList.add('correct');
+                        }
+                    });
+                }
+                answered = true;
+                document.getElementById('nextBtn').disabled = false;
+            }
+
+            function nextHandler() {
+                if (!answered) return;
+                if (currentIndex < TOTAL_QUESTIONS - 1) {
+                    currentIndex++;
+                    answered = false;
+                    renderQuestion();
+                } else {
+                    showResultScreen();
+                }
+            }
+
+            function showResultScreen() {
+                const ui = uiStrings[currentLang] || uiStrings.en;
+                const restartText = ui.restart;
+                const completed = ui.completed;
+                const correctAns = ui.correctAnswers;
+                const correctly = ui.correctly;
+                html = `
+                    <div class="result-box">
+                        <h3><i class="fas fa-trophy"></i> ${completed}</h3>
+                        <p style="font-size: 48px; font-weight:800; color:#1b6e3d;">${score}/${TOTAL_QUESTIONS}</p>
+                        <p style="margin: 20px 0;">${correctAns} ${score} ${correctly}</p>
+                    </div>
+                    <button class="restart-btn" id="restartBtnFinal"><i class="fas fa-rotate-right"></i> ${restartText}</button>
+                `;
+                quizArea.innerHTML = html;
+                document.getElementById('restartBtnFinal').addEventListener('click', () => initQuiz());
+                currentQNumSpan.textContent = TOTAL_QUESTIONS;
+                progressFill.style.width = '100%';
+            }
+
+            // language change
+            languageSelect.addEventListener('change', (e) => {
+                const newLang = e.target.value;
+                currentLang = newLang;
+                // update RTL
+                if (newLang === 'ar' || newLang === 'ur') {
+                    bodyEl.classList.add('rtl');
+                } else {
+                    bodyEl.classList.remove('rtl');
+                }
+                updateUILanguage();
+                renderQuestion();  // re-render with new language
+            });
+
+            // theme toggle
+            themeToggle.addEventListener('click', () => {
+                darkMode = !darkMode;
+                if (darkMode) {
+                    bodyEl.classList.add('dark-theme');
+                } else {
+                    bodyEl.classList.remove('dark-theme');
+                }
+                updateUILanguage(); // to reflect theme label (light/dark)
+            });
+
+            // initial load
+            initQuiz();
+            languageSelect.value = 'en';
+            bodyEl.classList.remove('rtl', 'dark-theme');
+        })();
+    </script>
+</body>
+</html>
