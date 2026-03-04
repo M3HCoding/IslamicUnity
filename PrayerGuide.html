@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
-  <title>Taharat & Salah Guide · Tasbih & Tarawih</title>
+  <title>A–Z Complete Salah Guide · Taharat & Duas</title>
   <!-- Google Fonts for multilingual support -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,7 +15,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      transition: background-color 0.3s ease, color 0.2s ease;
+      transition: background-color 0.3s ease, color 0.2s ease, transform 0.2s;
     }
 
     body {
@@ -32,7 +32,7 @@
     }
 
     .container {
-      max-width: 1200px;
+      max-width: 1300px;
       margin: 0 auto;
       background: rgba(255, 255, 255, 0.75);
       backdrop-filter: blur(2px);
@@ -75,6 +75,10 @@
       justify-content: center;
       font-size: 28px;
       box-shadow: 0 6px 12px #1b5e3f40;
+      transition: 0.3s;
+    }
+    .logo-icon:hover {
+      transform: scale(1.05) rotate(5deg);
     }
 
     .logo-text h1 {
@@ -169,6 +173,11 @@
       padding: 22px 18px;
       box-shadow: 0 10px 20px #d0dfd3;
       border: 1px solid #d0ead9;
+      transition: 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 30px #b0cfbb;
     }
 
     body.dark-mode .card {
@@ -186,7 +195,49 @@
       border-left-color: #56c58b;
     }
 
-    /* rakat table */
+    /* A–Z special grid */
+    .az-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 15px;
+      margin: 30px 0;
+    }
+    .az-item {
+      background: #e5f2ea;
+      border-radius: 30px;
+      padding: 18px 12px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid #abd8be;
+      transition: 0.2s;
+    }
+    .az-item:hover {
+      background: #d4ecdf;
+      transform: scale(1.02);
+      box-shadow: 0 10px 20px #a1cfb3;
+    }
+    body.dark-mode .az-item {
+      background: #2e4a3c;
+      border-color: #529e74;
+    }
+    .az-letter {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #1b6e4a;
+      line-height: 1;
+      margin-bottom: 5px;
+    }
+    .az-topic {
+      font-weight: 700;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+    .az-desc {
+      font-size: 0.9rem;
+      opacity: 0.85;
+    }
+
+    /* table */
     .table-responsive {
       overflow-x: auto;
       margin: 25px 0;
@@ -217,7 +268,46 @@
       border-bottom: 1px solid #bdd9cb;
     }
 
-    /* arabic styling */
+    /* step by step rakah */
+    .step-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin: 25px 0;
+    }
+    .step-badge {
+      background: #1f6e4a;
+      color: white;
+      border-radius: 50px;
+      padding: 10px 24px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      box-shadow: 0 4px 8px #1d472e;
+    }
+    body.dark-mode .step-badge {
+      background: #2f7f58;
+    }
+
+    .icon-list {
+      list-style: none;
+      padding: 0;
+    }
+    .icon-list li {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 1.1rem;
+    }
+    .icon-list i {
+      width: 32px;
+      color: #1e7e4d;
+      font-size: 1.6rem;
+    }
+
+    /* arabic */
     .arabic {
       font-family: 'Amiri', 'Noto Sans Arabic', serif;
       font-size: 1.9rem;
@@ -243,11 +333,21 @@
       text-align: center;
       color: #2a6e4a;
     }
+
+    /* animations */
+    @keyframes gentlePulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+    }
+    .fa-moon, .fa-sun {
+      animation: gentlePulse 3s infinite;
+    }
   </style>
 </head>
 <body>
   <div class="container" id="mainContainer">
-    <!-- top bar with logo + controls -->
+    <!-- top bar unchanged -->
     <div class="top-bar">
       <div class="logo-area">
         <div class="logo-icon"><i class="fas fa-hand-sparkles"></i></div>
@@ -267,48 +367,100 @@
       </div>
     </div>
 
-    <!-- WUDU SECTION (wazu ka tarika) -->
+    <!-- NEW SECTION: A–Z Complete Guide to Salah (English only, static) -->
+    <section>
+      <h2 class="section-title"><i class="fas fa-book-open" style="margin-right: 12px;"></i>A–Z Guide to Salah (Prayer)</h2>
+      <div class="az-grid" id="azGuideContainer">
+        <!-- dynamically generated via JS -->
+      </div>
+    </section>
+
+    <!-- existing sections (Wudu, Ghusl, Salah Steps, Rakats, Duas, Tasbih) will be kept but we'll also add new detailed ones -->
     <section>
       <h2 class="section-title" id="wuduTitle">🧼 Wazu (Wudu) ka tarika</h2>
       <div class="card-grid" id="wuduStepsContainer"></div>
     </section>
 
-    <!-- GHUSL SECTION -->
     <section>
       <h2 class="section-title" id="ghuslTitle">🚿 Ghusl karne ka tarika</h2>
       <div class="card-grid" id="ghuslStepsContainer"></div>
     </section>
 
-    <!-- NAMAZ STEPS (summary) -->
+    <!-- 5 daily prayers with rakats (enhanced) -->
     <section>
-      <h2 class="section-title" id="salahStepsTitle">📿 Namaz (Salah) ke 7 steps</h2>
-      <div class="card-grid" id="salahStepsContainer"></div>
-    </section>
-
-    <!-- RAKAT TABLE -->
-    <section>
-      <h2 class="section-title" id="rakatTitle">🕌 Rakat details (5 prayers)</h2>
+      <h2 class="section-title" id="rakatTitle">🕌 Five Daily Prayers with Rakats</h2>
       <div class="table-responsive" id="rakatTableContainer"></div>
     </section>
 
-    <!-- IMPORTANT DUAS -->
+    <!-- Steps of one rakah (new) -->
+    <section>
+      <h2 class="section-title"><i class="fas fa-arrow-right-to-bracket"></i> Steps of One Rakah (Prayer Unit)</h2>
+      <div class="step-row" id="oneRakahSteps"></div>
+      <div class="card" style="display: inline-block; padding: 15px 30px;">
+        <ol style="list-style-position: inside; font-weight: 500;">
+          <li><strong>Niyyah</strong> – Intend the prayer.</li>
+          <li><strong>Takbir</strong> – “Allāhu Akbar”, hands raised.</li>
+          <li><strong>Qiyam</strong> – Recite Sūrah Al-Fātihah + another sūrah.</li>
+          <li><strong>Rukū‘</strong> – Bow, “Subhāna Rabbiyal Adhīm” 3x.</li>
+          <li><strong>Standing again</strong> – “Sami‘allāhu liman ḥamidah”.</li>
+          <li><strong>Sujood (1st)</strong> – Prostrate, “Subhāna Rabbiyal A‘lā” 3x.</li>
+          <li><strong>Brief sitting</strong> – between prostrations.</li>
+          <li><strong>Sujood (2nd)</strong> – repeat.</li>
+          <li><strong>Tashahhud & Salām</strong> – after required rakats.</li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- Conditions + Benefits -->
+    <section>
+      <h2 class="section-title"><i class="fas fa-clipboard-check"></i> Conditions & Benefits</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3 style="color: #146b3f;">✅ Conditions Required</h3>
+          <ul class="icon-list">
+            <li><i class="fas fa-soap"></i> Clean body & clothes</li>
+            <li><i class="fas fa-hand-holding-water"></i> Wuḍū (ablution)</li>
+            <li><i class="fas fa-compass"></i> Facing Qibla</li>
+            <li><i class="fas fa-tshirt"></i> Proper covering (awrah)</li>
+            <li><i class="fas fa-clock"></i> Correct prayer time</li>
+            <li><i class="fas fa-heart"></i> Intention (niyyah)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 style="color: #146b3f;">✨ Benefits of Salah</h3>
+          <ul class="icon-list">
+            <li><i class="fas fa-link"></i> Strengthens connection with Allah</li>
+            <li><i class="fas fa-peace"></i> Brings inner peace & discipline</li>
+            <li><i class="fas fa-hand-holding-heart"></i> Removes sins</li>
+            <li><i class="fas fa-feather"></i> Builds patience & humility</li>
+            <li><i class="fas fa-people-group"></i> Unites the Muslim community</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Existing Salah steps (as concise cards) but we already have more detail, so keep original as extra? Let's keep it brief -->
+    <section>
+      <h2 class="section-title" id="salahStepsTitle">📿 Namaz ke 7 steps (overview)</h2>
+      <div class="card-grid" id="salahStepsContainer"></div>
+    </section>
+
+    <!-- Important Duas (existing) -->
     <section>
       <h2 class="section-title" id="duasTitle">🤲 Important Duas</h2>
       <div class="card-grid" id="duasContainer"></div>
     </section>
 
-    <!-- NEW SECTION: TASBIH PHRASES & TARAWIH NIYYAH -->
+    <!-- Tasbih & Tarawih (existing) -->
     <section>
       <h2 class="section-title" id="tasbihTarawihTitle">📿 Tasbih aur Tarawih ki Niyyat</h2>
       <div class="card-grid">
-        <!-- Tasbih phrases card -->
         <div class="card">
-          <h3 style="color: #146b3f; margin-bottom: 15px;" id="tasbihPhrasesHead">📿 Tasbih ke Kalimaat</h3>
+          <h3 style="color: #146b3f;" id="tasbihPhrasesHead">📿 Tasbih ke Kalimaat</h3>
           <div id="tasbihPhrasesList"></div>
         </div>
-        <!-- Tarawih niyyah card -->
         <div class="card">
-          <h3 style="color: #146b3f; margin-bottom: 15px;" id="tarawihNiyyahHead">🕌 Tarawih ki Niyyat</h3>
+          <h3 style="color: #146b3f;" id="tarawihNiyyahHead">🕌 Tarawih ki Niyyat</h3>
           <div id="tarawihNiyyahContent"></div>
         </div>
       </div>
@@ -321,7 +473,7 @@
 
   <script>
     (function() {
-      // ---------- TRANSLATIONS (extended with Tasbih & Tarawih) ----------
+      // ---------- TRANSLATIONS (same as before, plus new keys for added sections? We'll keep mostly existing) ----------
       const translations = {
         en: {
           appTitle: "Ṭahārat & Salāh Guide",
@@ -357,7 +509,7 @@
             "Sit, recite At-Tahiyyāt, Durood, du‘ā.",
             "Say salām right and left."
           ],
-          rakatTitle: "🕌 Rakat details",
+          rakatTitle: "🕌 Five Daily Prayers with Rakats",
           tableHeader: ["Prayer", "Sunnah (before)", "Fard", "Sunnah (after)", "Nafl/Witr"],
           rakatRows: [
             ["Fajr", "2", "2", "—", "—"],
@@ -373,10 +525,9 @@
           dua2Arabic: "التَّحِيَّاتُ لِلَّهِ وَالصَّلَوَاتُ وَالطَّيِّبَاتُ، السَّلَامُ عَلَيْكَ أَيُّهَا النَّبِيُّ وَرَحْمَةُ اللَّهِ وَبَرَكَاتُهُ، السَّلَامُ عَلَيْنَا وَعَلَى عِبَادِ اللَّهِ الصَّالِحِينَ",
           dua2Translit: "At-tahiyyātu lillāhi was-salawātu wat-tayyibātu. As-salāmu 'alayka ayyuhan-nabiyyu wa rahmatullāhi wa barakātuh. As-salāmu 'alaynā wa 'alā 'ibādillāhis-sālihīn.",
           dua2Meaning: "All compliments, prayers and pure words are for Allah. Peace be upon you, O Prophet, and mercy of Allah and His blessings. Peace be on us and on the righteous slaves of Allah.",
-          // New Tasbih & Tarawih section
           tasbihTarawihTitle: "📿 Tasbih aur Tarawih ki Niyyat",
-          tasbihPhrasesHead: "📿 Tasbih ke Kalimaat (What to recite)",
-          tarawihNiyyahHead: "🕌 Tarawih ki Niyyat (Intention for Tarawih)",
+          tasbihPhrasesHead: "📿 Tasbih ke Kalimaat",
+          tarawihNiyyahHead: "🕌 Tarawih ki Niyyat",
           tasbihList: [
             { arabic: "سُبْحَانَ اللَّهِ", translit: "Subhānallāh", meaning: "Glory be to Allah" },
             { arabic: "الْحَمْدُ لِلَّهِ", translit: "Alḥamdulillāh", meaning: "Praise be to Allah" },
@@ -389,49 +540,19 @@
           tarawihNiyyahMeaning: "I intend to pray two rakats of Tarawih for Allah, following the Sunnah of the Messenger of Allah, facing the Ka'bah, Allahu Akbar.",
           footerText: "📖 Learn, pray, remember Allah"
         },
-        hi: {
+        hi: { /* truncated for brevity - same as before but we'll keep minimal */ 
           appTitle: "तहारत और नमाज़ गाइड",
           appSub: "वुज़ू · ग़ुस्ल · नमाज़ · तस्बीह",
           wuduTitle: "🧼 वुज़ू करने का तरीका",
-          wuduSteps: [
-            "1. नियत करें (पाकी की नियत)।",
-            "2. दोनों हाथ कलाई तक 3 बार धोएँ।",
-            "3. कुल्ली करें और नाक में पानी डालें 3 बार।",
-            "4. चेहरा 3 बार धोएँ।",
-            "5. दायाँ फिर बायाँ हाथ कोहनी तक 3 बार।",
-            "6. सिर और कानों का मसह करें (एक बार)।",
-            "7. दायाँ फिर बायाँ पैर टखनों तक 3 बार।"
-          ],
+          wuduSteps: [ "1. नियत करें (पाकी की नियत)।", "2. दोनों हाथ कलाई तक 3 बार धोएँ।", "3. कुल्ली करें और नाक में पानी डालें 3 बार।", "4. चेहरा 3 बार धोएँ।", "5. दायाँ फिर बायाँ हाथ कोहनी तक 3 बार।", "6. सिर और कानों का मसह करें (एक बार)।", "7. दायाँ फिर बायाँ पैर टखनों तक 3 बार।" ],
           ghuslTitle: "🚿 ग़ुस्ल करने का तरीका",
-          ghuslSteps: [
-            "1. नियत करें ग़ुस्ल की।",
-            "2. दोनों हाथ कलाई तक धोएँ।",
-            "3. शर्मगाह को अच्छी तरह धोएँ।",
-            "4. वुज़ू करें (पैर बाद में धोएँगे)।",
-            "5. सिर पर तीन बार पानी डालें (जड़ों तक)।",
-            "6. दायें कंधे पर तीन बार, फिर बायें पर।",
-            "7. पूरे शरीर को रगड़ कर धोएँ।"
-          ],
+          ghuslSteps: [ "1. नियत करें ग़ुस्ल की।", "2. दोनों हाथ कलाई तक धोएँ।", "3. शर्मगाह को अच्छी तरह धोएँ।", "4. वुज़ू करें (पैर बाद में धोएँगे)।", "5. सिर पर तीन बार पानी डालें (जड़ों तक)।", "6. दायें कंधे पर तीन बार, फिर बायें पर।", "7. पूरे शरीर को रगड़ कर धोएँ।" ],
           salahStepsTitle: "📿 नमाज़ के 7 कदम",
           salahStepTitles: ["नियत", "तकबीर", "क़िरात", "रुकू", "सजदा", "तशह्हुद", "सलाम"],
-          salahStepDescs: [
-            "नमाज़ की नियत करें।",
-            "अल्लाहु अकबर कहें, हाथ बाँधें।",
-            "सना, फातिहा और सूरत पढ़ें।",
-            "रुकू में तीन बार तस्बीह।",
-            "दो सजदे, तीन बार तस्बीह।",
-            "अत्तहिय्यात, दरूद, दुआ।",
-            "दायें-बायें सलाम।"
-          ],
+          salahStepDescs: [ "नमाज़ की नियत करें।", "अल्लाहु अकबर कहें, हाथ बाँधें।", "सना, फातिहा और सूरत पढ़ें।", "रुकू में तीन बार तस्बीह।", "दो सजदे, तीन बार तस्बीह।", "अत्तहिय्यात, दरूद, दुआ।", "दायें-बायें सलाम।" ],
           rakatTitle: "🕌 रकअत तालिका",
           tableHeader: ["नमाज़", "सुन्नत (पहले)", "फ़र्ज़", "सुन्नत (बाद)", "नफ़िल / वित्र"],
-          rakatRows: [
-            ["फज्र", "2", "2", "—", "—"],
-            ["ज़ुह्र", "4", "4", "2", "2 नफ़िल"],
-            ["अस्र", "4 (गैर मौक्कदा)", "4", "—", "—"],
-            ["मग़रिब", "—", "3", "2", "2 नफ़िल"],
-            ["ईशा", "4", "4", "2", "3 वित्र+2 नफ़िल"]
-          ],
+          rakatRows: [ ["फज्र", "2", "2", "—", "—"], ["ज़ुह्र", "4", "4", "2", "2 नफ़िल"], ["अस्र", "4 (गैर मौक्कदा)", "4", "—", "—"], ["मग़रिब", "—", "3", "2", "2 नफ़िल"], ["ईशा", "4", "4", "2", "3 वित्र+2 नफ़िल"] ],
           duasTitle: "🤲 अहम दुआएँ",
           dua1Arabic: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ",
           dua1Translit: "सुभानकल्लाहुम्मा व बिहम्दिका व तबारकस्मुका व तआला जद्दुका व ला इलाहा गैरुक।",
@@ -442,61 +563,25 @@
           tasbihTarawihTitle: "📿 तस्बीह और तरावीह की नियत",
           tasbihPhrasesHead: "📿 तस्बीह के कलिमात",
           tarawihNiyyahHead: "🕌 तरावीह की नियत",
-          tasbihList: [
-            { arabic: "سُبْحَانَ اللَّهِ", translit: "सुभानल्लाह", meaning: "अल्लाह पाक है" },
-            { arabic: "الْحَمْدُ لِلَّهِ", translit: "अल्हम्दुलिल्लाह", meaning: "सब तारीफ़ अल्लाह के लिए" },
-            { arabic: "اللَّهُ أَكْبَرُ", translit: "अल्लाहु अकबर", meaning: "अल्लाह सबसे बड़ा है" },
-            { arabic: "لَا إِلَهَ إِلَّا اللَّهُ", translit: "ला इलाहा इल्लल्लाह", meaning: "अल्लाह के सिवा कोई माबूद नहीं" },
-            { arabic: "أَسْتَغْفِرُ اللَّهَ", translit: "अस्तग़फिरुल्लाह", meaning: "मैं अल्लाह से माफ़ी माँगता हूँ" }
-          ],
+          tasbihList: [ { arabic: "سُبْحَانَ اللَّهِ", translit: "सुभानल्लाह", meaning: "अल्लाह पाक है" }, { arabic: "الْحَمْدُ لِلَّهِ", translit: "अल्हम्दुलिल्लाह", meaning: "सब तारीफ़ अल्लाह के लिए" }, { arabic: "اللَّهُ أَكْبَرُ", translit: "अल्लाहु अकबर", meaning: "अल्लाह सबसे बड़ा है" }, { arabic: "لَا إِلَهَ إِلَّا اللَّهُ", translit: "ला इलाहा इल्लल्लाह", meaning: "अल्लाह के सिवा कोई माबूद नहीं" }, { arabic: "أَسْتَغْفِرُ اللَّهَ", translit: "अस्तग़फिरुल्लाह", meaning: "मैं अल्लाह से माफ़ी माँगता हूँ" } ],
           tarawihNiyyahArabic: "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَى رَكْعَتَيْ صَلَاةِ التَّرَاوِيحِ سُنَّةَ رَسُولِ اللَّهِ تَعَالَى، مُتَوَجِّهًا إِلَى جِهَةِ الْكَعْبَةِ، اللَّهُ أَكْبَرُ",
           tarawihNiyyahTranslit: "नवैतु अन उसल्लिया लिल्लाहि तआला रकअते सलातित्तरावीहि सुन्नता रसूलिल्लाहि तआला, मुतवज्जिहन इला जिहतिल कअबति, अल्लाहु अकबर।",
           tarawihNiyyahMeaning: "मैं अल्लाह के लिए दो रकअत तरावीह की नमाज़ पढ़ने की नियत करता हूँ, अल्लाह के रसूल की सुन्नत के रूप में, काबा की तरफ़ मुँह करके, अल्लाहु अकबर।",
           footerText: "📖 सीखें, नमाज़ पढ़ें, अल्लाह को याद करें"
         },
-        ur: {
+        ur: { /* similar to en but Urdu script - minimal for brevity */ 
           appTitle: "طہارت و نماز گائیڈ",
           appSub: "وضو · غسل · نماز · تسبیح",
           wuduTitle: "🧼 وضو کا طریقہ",
-          wuduSteps: [
-            "1. نیت کریں (پاکی کی نیت)。",
-            "2. دونوں ہاتھ کلائیوں تک 3 بار دھوئیں۔",
-            "3. کلی کریں اور ناک میں پانی ڈالیں 3 بار۔",
-            "4. چہرہ 3 بار دھوئیں۔",
-            "5. دایاں پھر بایاں ہاتھ کہنیوں تک 3 بار۔",
-            "6. سر اور کانوں کا مسح کریں (ایک بار)。",
-            "7. دایاں پھر بایاں پاؤں ٹخنوں تک 3 بار۔"
-          ],
+          wuduSteps: [ "1. نیت کریں (پاکی کی نیت)。", "2. دونوں ہاتھ کلائیوں تک 3 بار دھوئیں۔", "3. کلی کریں اور ناک میں پانی ڈالیں 3 بار۔", "4. چہرہ 3 بار دھوئیں۔", "5. دایاں پھر بایاں ہاتھ کہنیوں تک 3 بار۔", "6. سر اور کانوں کا مسح کریں (ایک بار)۔", "7. دایاں پھر بایاں پاؤں ٹخنوں تک 3 بار۔" ],
           ghuslTitle: "🚿 غسل کا طریقہ",
-          ghuslSteps: [
-            "1. غسل کی نیت کریں۔",
-            "2. دونوں ہاتھ کلائیوں تک دھوئیں۔",
-            "3. شرمگاہ اچھی طرح دھوئیں۔",
-            "4. وضو کریں (پاؤں بعد میں دھوئیں گے)۔",
-            "5. سر پر تین بار پانی ڈالیں (جڑوں تک)۔",
-            "6. دائیں کندھے پر تین بار، پھر بائیں پر۔",
-            "7. پورے جسم کو مل کر دھوئیں۔"
-          ],
+          ghuslSteps: [ "1. غسل کی نیت کریں۔", "2. دونوں ہاتھ کلائیوں تک دھوئیں۔", "3. شرمگاہ اچھی طرح دھوئیں۔", "4. وضو کریں (پاؤں بعد میں دھوئیں گے)۔", "5. سر پر تین بار پانی ڈالیں (جڑوں تک)۔", "6. دائیں کندھے پر تین بار، پھر بائیں پر۔", "7. پورے جسم کو مل کر دھوئیں۔" ],
           salahStepsTitle: "📿 نماز کے 7 مراحل",
           salahStepTitles: ["نیت", "تکبیر", "قرأت", "رکوع", "سجدہ", "تشہد", "سلام"],
-          salahStepDescs: [
-            "نماز کی نیت کریں۔",
-            "اللہ اکبر کہہ کر ہاتھ باندھیں۔",
-            "ثنا، فاتحہ اور سورت پڑھیں۔",
-            "رکوع میں تین بار تسبیح۔",
-            "دو سجدے، تین بار تسبیح۔",
-            "التحیات، درود، دعا۔",
-            "دائیں بائیں سلام۔"
-          ],
+          salahStepDescs: [ "نماز کی نیت کریں۔", "اللہ اکبر کہہ کر ہاتھ باندھیں۔", "ثنا، فاتحہ اور سورت پڑھیں۔", "رکوع میں تین بار تسبیح۔", "دو سجدے، تین بار تسبیح۔", "التحیات، درود، دعا۔", "دائیں بائیں سلام۔" ],
           rakatTitle: "🕌 رکعات کی تفصیل",
           tableHeader: ["نماز", "سنت (قبل)", "فرض", "سنت (بعد)", "نفل/ وتر"],
-          rakatRows: [
-            ["فجر", "2", "2", "—", "—"],
-            ["ظہر", "4", "4", "2", "2 نفل"],
-            ["عصر", "4 (غیر مؤکدہ)", "4", "—", "—"],
-            ["مغرب", "—", "3", "2", "2 نفل"],
-            ["عشاء", "4", "4", "2", "3 وتر+2 نفل"]
-          ],
+          rakatRows: [ ["فجر", "2", "2", "—", "—"], ["ظہر", "4", "4", "2", "2 نفل"], ["عصر", "4 (غیر مؤکدہ)", "4", "—", "—"], ["مغرب", "—", "3", "2", "2 نفل"], ["عشاء", "4", "4", "2", "3 وتر+2 نفل"] ],
           duasTitle: "🤲 اہم دعائیں",
           dua1Arabic: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ",
           dua1Translit: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ",
@@ -507,61 +592,25 @@
           tasbihTarawihTitle: "📿 تسبیح اور تراویح کی نیت",
           tasbihPhrasesHead: "📿 تسبیح کے کلمات",
           tarawihNiyyahHead: "🕌 تراویح کی نیت",
-          tasbihList: [
-            { arabic: "سُبْحَانَ اللَّهِ", translit: "سُبْحَانَ اللَّهِ", meaning: "اللہ پاک ہے" },
-            { arabic: "الْحَمْدُ لِلَّهِ", translit: "الْحَمْدُ لِلَّهِ", meaning: "تمام تعریف اللہ کے لیے" },
-            { arabic: "اللَّهُ أَكْبَرُ", translit: "اللَّهُ أَكْبَرُ", meaning: "اللہ سب سے بڑا ہے" },
-            { arabic: "لَا إِلَهَ إِلَّا اللَّهُ", translit: "لَا إِلَهَ إِلَّا اللَّهُ", meaning: "اللہ کے سوا کوئی معبود نہیں" },
-            { arabic: "أَسْتَغْفِرُ اللَّهَ", translit: "أَسْتَغْفِرُ اللَّهَ", meaning: "میں اللہ سے مغفرت مانگتا ہوں" }
-          ],
+          tasbihList: [ { arabic: "سُبْحَانَ اللَّهِ", translit: "سُبْحَانَ اللَّهِ", meaning: "اللہ پاک ہے" }, { arabic: "الْحَمْدُ لِلَّهِ", translit: "الْحَمْدُ لِلَّهِ", meaning: "تمام تعریف اللہ کے لیے" }, { arabic: "اللَّهُ أَكْبَرُ", translit: "اللَّهُ أَكْبَرُ", meaning: "اللہ سب سے بڑا ہے" }, { arabic: "لَا إِلَهَ إِلَّا اللَّهُ", translit: "لَا إِلَهَ إِلَّا اللَّهُ", meaning: "اللہ کے سوا کوئی معبود نہیں" }, { arabic: "أَسْتَغْفِرُ اللَّهَ", translit: "أَسْتَغْفِرُ اللَّهَ", meaning: "میں اللہ سے مغفرت مانگتا ہوں" } ],
           tarawihNiyyahArabic: "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَى رَكْعَتَيْ صَلَاةِ التَّرَاوِيحِ سُنَّةَ رَسُولِ اللَّهِ تَعَالَى، مُتَوَجِّهًا إِلَى جِهَةِ الْكَعْبَةِ، اللَّهُ أَكْبَرُ",
           tarawihNiyyahTranslit: "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَى رَكْعَتَيْ صَلَاةِ التَّرَاوِيحِ سُنَّةَ رَسُولِ اللَّهِ تَعَالَى، مُتَوَجِّهًا إِلَى جِهَةِ الْكَعْبَةِ، اللَّهُ أَكْبَرُ",
           tarawihNiyyahMeaning: "میں نے نیت کی دو رکعت تراویح کی اللہ تعالیٰ کے لیے، رسول اللہ صلی اللہ علیہ وسلم کی سنت کے مطابق، قبلہ رخ، اللہ اکبر۔",
           footerText: "📖 سیکھیں، نماز پڑھیں، اللہ کو یاد کریں"
         },
-        ar: {
+        ar: { /* Arabic version - placeholder, same structure but Arabic text not fully repeated to save space */ 
           appTitle: "دليل الطهارة والصلاة",
           appSub: "الوضوء · الغسل · الصلاة · التسبيح",
           wuduTitle: "🧼 كيفية الوضوء",
-          wuduSteps: [
-            "١. النية (نية الطهارة).",
-            "٢. غسل الكفين ٣ مرات.",
-            "٣. المضمضة والاستنشاق ٣ مرات.",
-            "٤. غسل الوجه ٣ مرات.",
-            "٥. غسل اليدين إلى المرفقين ٣ مرات (يمنى ثم يسرى).",
-            "٦. مسح الرأس والأذنين مرة.",
-            "٧. غسل الرجلين إلى الكعبين ٣ مرات (يمنى ثم يسرى)."
-          ],
+          wuduSteps: [ "١. النية (نية الطهارة).", "٢. غسل الكفين ٣ مرات.", "٣. المضمضة والاستنشاق ٣ مرات.", "٤. غسل الوجه ٣ مرات.", "٥. غسل اليدين إلى المرفقين ٣ مرات (يمنى ثم يسرى).", "٦. مسح الرأس والأذنين مرة.", "٧. غسل الرجلين إلى الكعبين ٣ مرات (يمنى ثم يسرى)." ],
           ghuslTitle: "🚿 كيفية الغسل",
-          ghuslSteps: [
-            "١. النية للغسل.",
-            "٢. غسل الكفين ٣ مرات.",
-            "٣. غسل الفرج جيداً.",
-            "٤. الوضوء كاملاً (بدون غسل الرجلين).",
-            "٥. صب الماء على الرأس ٣ مرات يروي الشعر.",
-            "٦. صب الماء على الكتف الأيمن ٣ مرات ثم الأيسر.",
-            "٧. تعميم البدن بالماء مع الدلك."
-          ],
+          ghuslSteps: [ "١. النية للغسل.", "٢. غسل الكفين ٣ مرات.", "٣. غسل الفرج جيداً.", "٤. الوضوء كاملاً (بدون غسل الرجلين).", "٥. صب الماء على الرأس ٣ مرات يروي الشعر.", "٦. صب الماء على الكتف الأيمن ٣ مرات ثم الأيسر.", "٧. تعميم البدن بالماء مع الدلك." ],
           salahStepsTitle: "📿 خطوات الصلاة",
           salahStepTitles: ["النية", "التكبير", "القراءة", "الركوع", "السجود", "التشهد", "التسليم"],
-          salahStepDescs: [
-            "نية الصلاة",
-            "الله أكبر و وضع اليدين",
-            "قراءة الفاتحة وسورة",
-            "التسبيح في الركوع",
-            "سجدتين والتسبيح",
-            "التشهد والصلاة على النبي",
-            "التسليم يميناً وشمالاً"
-          ],
+          salahStepDescs: [ "نية الصلاة", "الله أكبر و وضع اليدين", "قراءة الفاتحة وسورة", "التسبيح في الركوع", "سجدتين والتسبيح", "التشهد والصلاة على النبي", "التسليم يميناً وشمالاً" ],
           rakatTitle: "🕌 عدد الركعات",
           tableHeader: ["الصلاة", "السنة (قبل)", "الفرض", "السنة (بعد)", "النفل / الوتر"],
-          rakatRows: [
-            ["الفجر", "2", "2", "—", "—"],
-            ["الظهر", "4", "4", "2", "2 نفل"],
-            ["العصر", "4 (غير مؤكدة)", "4", "—", "—"],
-            ["المغرب", "—", "3", "2", "2 نفل"],
-            ["العشاء", "4", "4", "2", "3 وتر+2 نفل"]
-          ],
+          rakatRows: [ ["الفجر", "2", "2", "—", "—"], ["الظهر", "4", "4", "2", "2 نفل"], ["العصر", "4 (غير مؤكدة)", "4", "—", "—"], ["المغرب", "—", "3", "2", "2 نفل"], ["العشاء", "4", "4", "2", "3 وتر+2 نفل"] ],
           duasTitle: "🤲 أدعية هامة",
           dua1Arabic: "سُبْحَانَكَ اللَّهُمَّ وَبِحَمْدِكَ وَتَبَارَكَ اسْمُكَ وَتَعَالَى جَدُّكَ وَلَا إِلَهَ غَيْرُكَ",
           dua1Translit: "Subhānaka Allāhumma wa bihamdika wa tabāraka smuka wa ta'āla jadduka wa lā ilāha ghayruk.",
@@ -572,13 +621,7 @@
           tasbihTarawihTitle: "📿 التسبيح و نية التراويح",
           tasbihPhrasesHead: "📿 كلمات التسبيح",
           tarawihNiyyahHead: "🕌 نية صلاة التراويح",
-          tasbihList: [
-            { arabic: "سُبْحَانَ اللَّهِ", translit: "Subḥān Allāh", meaning: "سبحان الله" },
-            { arabic: "الْحَمْدُ لِلَّهِ", translit: "Al-ḥamdu lillāh", meaning: "الحمد لله" },
-            { arabic: "اللَّهُ أَكْبَرُ", translit: "Allāhu akbar", meaning: "الله أكبر" },
-            { arabic: "لَا إِلَهَ إِلَّا اللَّهُ", translit: "Lā ilāha illā Allāh", meaning: "لا إله إلا الله" },
-            { arabic: "أَسْتَغْفِرُ اللَّهَ", translit: "Astaghfiru Allāh", meaning: "أستغفر الله" }
-          ],
+          tasbihList: [ { arabic: "سُبْحَانَ اللَّهِ", translit: "Subḥān Allāh", meaning: "سبحان الله" }, { arabic: "الْحَمْدُ لِلَّهِ", translit: "Al-ḥamdu lillāh", meaning: "الحمد لله" }, { arabic: "اللَّهُ أَكْبَرُ", translit: "Allāhu akbar", meaning: "الله أكبر" }, { arabic: "لَا إِلَهَ إِلَّا اللَّهُ", translit: "Lā ilāha illā Allāh", meaning: "لا إله إلا الله" }, { arabic: "أَسْتَغْفِرُ اللَّهَ", translit: "Astaghfiru Allāh", meaning: "أستغفر الله" } ],
           tarawihNiyyahArabic: "نَوَيْتُ أَنْ أُصَلِّيَ لِلَّهِ تَعَالَى رَكْعَتَيْ صَلَاةِ التَّرَاوِيحِ سُنَّةَ رَسُولِ اللَّهِ تَعَالَى، مُتَوَجِّهًا إِلَى جِهَةِ الْكَعْبَةِ، اللَّهُ أَكْبَرُ",
           tarawihNiyyahTranslit: "Nawaitu an uṣalliya lillāhi ta'ālā rak'atay ṣalāti-t-tarāwīḥi sunnata rasūlillāhi ta'ālā, mutawajjihan ilā jihatil-ka'bati, Allāhu akbar.",
           tarawihNiyyahMeaning: "نويت أن أصلي لله تعالى ركعتي صلاة التراويح سنة رسول الله تعالى متوجهاً إلى جهة الكعبة الله أكبر",
@@ -586,19 +629,55 @@
         }
       };
 
-      // ---------- Global variables ----------
+      // A–Z data (English only)
+      const azData = [
+        { letter: "A", topic: "Adhan", desc: "The call to prayer announcing Salah time." },
+        { letter: "B", topic: "Bismillah", desc: "Begin prayer with 'Bismillah-ir-Rahman-ir-Raheem'." },
+        { letter: "C", topic: "Cleanliness (Taharah)", desc: "Body, clothes, place must be clean." },
+        { letter: "D", topic: "Dua", desc: "Supplications before, during & after prayer." },
+        { letter: "E", topic: "Etiquette (Adab)", desc: "Humility, focus, avoid distractions." },
+        { letter: "F", topic: "Fajr Prayer", desc: "2 Fard rakats before sunrise." },
+        { letter: "G", topic: "Ghusl", desc: "Full purification bath after major impurity." },
+        { letter: "H", topic: "Humility (Khushu)", desc: "Full attention and devotion." },
+        { letter: "I", topic: "Intention (Niyyah)", desc: "Intend in your heart the specific prayer." },
+        { letter: "J", topic: "Jama’ah", desc: "Congregation prayer gives 27x reward." },
+        { letter: "K", topic: "Kaaba Direction (Qibla)", desc: "Face the Kaaba in Makkah." },
+        { letter: "L", topic: "Listening to Quran", desc: "Recitation guides and strengthens faith." },
+        { letter: "M", topic: "Masjid", desc: "Mosque where Muslims gather." },
+        { letter: "N", topic: "Nafl Prayer", desc: "Optional prayers for extra reward." },
+        { letter: "O", topic: "Obligatory Prayer", desc: "Five daily prayers are compulsory." },
+        { letter: "P", topic: "Prayer Times", desc: "Five prayers spread throughout the day." },
+        { letter: "Q", topic: "Quran Recitation", desc: "Surah Al-Fatiha + other verses in each rakah." },
+        { letter: "R", topic: "Ruku", desc: "Bowing showing humility." },
+        { letter: "S", topic: "Sujood", desc: "Prostration, closest to Allah." },
+        { letter: "T", topic: "Tashahhud", desc: "Sitting position reciting testimony." },
+        { letter: "U", topic: "Unity", desc: "Prayer unites Muslims worldwide." },
+        { letter: "V", topic: "Virtues of Prayer", desc: "Removes sins, strengthens discipline." },
+        { letter: "W", topic: "Wudu", desc: "Ablution before prayer." },
+        { letter: "X", topic: "Excellence in Prayer", desc: "Sincerity, calmness, correct posture." },
+        { letter: "Y", topic: "Yearly Special Prayer", desc: "Eid prayers twice a year." },
+        { letter: "Z", topic: "Zikr", desc: "Remembering Allah before/after prayer." }
+      ];
+
+      // populate A–Z grid
+      const azContainer = document.getElementById('azGuideContainer');
+      azContainer.innerHTML = azData.map(item => `
+        <div class="az-item">
+          <span class="az-letter">${item.letter}</span>
+          <span class="az-topic">${item.topic}</span>
+          <span class="az-desc">${item.desc}</span>
+        </div>
+      `).join('');
+
       let currentLang = 'en';
 
-      // DOM elements
       const langSwitcher = document.getElementById('languageSwitcher');
       const darkToggle = document.getElementById('darkmodeToggle');
 
-      // Helper: get translation
       function t(key) {
         return translations[currentLang]?.[key] || translations.en[key];
       }
 
-      // Render wudu steps
       function renderWudu() {
         const container = document.getElementById('wuduStepsContainer');
         const steps = t('wuduSteps');
@@ -649,8 +728,6 @@
           </div>
         `;
       }
-
-      // New: render Tasbih phrases and Tarawih niyyah
       function renderTasbihTarawih() {
         const phrasesContainer = document.getElementById('tasbihPhrasesList');
         const niyyahContainer = document.getElementById('tarawihNiyyahContent');
@@ -666,7 +743,6 @@
           `;
         });
         phrasesContainer.innerHTML = phrasesHtml || '<p>No data</p>';
-
         niyyahContainer.innerHTML = `
           <div class="arabic" style="font-size: 1.6rem;">${t('tarawihNiyyahArabic')}</div>
           <div class="transliteration">${t('tarawihNiyyahTranslit')}</div>
@@ -699,7 +775,6 @@
         document.documentElement.lang = currentLang;
       }
 
-      // Event listeners
       langSwitcher.addEventListener('change', (e) => {
         currentLang = e.target.value;
         updateStaticTexts();
@@ -712,7 +787,6 @@
         icon.classList.toggle('fa-sun');
       });
 
-      // Initial render
       updateStaticTexts();
     })();
   </script>
