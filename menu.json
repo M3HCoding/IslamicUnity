@@ -9,7 +9,7 @@
       {
         "id": "prayer_times",
         "title": "Prayer Times",
-        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/time.xml",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/time.svg",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -20,7 +20,7 @@
       {
         "id": "qibla",
         "title": "Qibla Finder",
-        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/kaaba.xml",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/kaaba.svg",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -31,7 +31,7 @@
       {
         "id": "audio",
         "title": "Audio",
-        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/audio.xml",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/audio.svg",
         "enabled": true,
         "visible": true,
         "type": "fragment",
