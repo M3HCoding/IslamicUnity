@@ -134,6 +134,7 @@
         "enabled": true,
         "visible": true,
         "type": "fragment",
+        "url": "https://m3hcoding.github.io/IslamicUnity/quiz.json",
         "destination": "quizFragment",
         "span": 1,
         "analytics": "quiz"
@@ -178,6 +179,7 @@
         "enabled": true,
         "visible": true,
         "type": "fragment",
+        "url": "https://m3hcoding.github.io/IslamicUnity/duas.json",
         "destination": "duaFragment",
         "span": 1,
         "analytics": "dua"
@@ -211,6 +213,7 @@
         "enabled": true,
         "visible": true,
         "type": "fragment",
+        "url": "https://m3hcoding.github.io/IslamicUnity/ZakatCalculator.html",
         "destination": "zakatFragment",
         "span": 1,
         "analytics": "zakat"
@@ -222,6 +225,7 @@
         "enabled": true,
         "visible": true,
         "type": "fragment",
+        "url": "https://cdn.moneyconvert.net/api/latest.json",
         "destination": "currencyFragment",
         "span": 1,
         "analytics": "currency"
