@@ -9,7 +9,7 @@
       {
         "id": "prayer_times",
         "title": "Prayer Times",
-        "icon": "time",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/time.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -20,7 +20,7 @@
       {
         "id": "qibla",
         "title": "Qibla Finder",
-        "icon": "kaaba",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/kaaba.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -31,7 +31,7 @@
       {
         "id": "audio",
         "title": "Audio",
-        "icon": "audio",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/audio.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -42,7 +42,7 @@
       {
         "id": "books",
         "title": "Books",
-        "icon": "books",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/books.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -53,7 +53,7 @@
       {
         "id": "allah_names",
         "title": "99 Names of Allah",
-        "icon": "allah",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/allah.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -64,7 +64,7 @@
       {
         "id": "tasbih",
         "title": "Tasbih",
-        "icon": "tasbih",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/tasbih.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -75,7 +75,7 @@
       {
         "id": "calendar",
         "title": "Calendar",
-        "icon": "calender",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/calender.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -86,7 +86,7 @@
       {
         "id": "hajj",
         "title": "Hajj",
-        "icon": "hajj",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/hajj.xml",
         "enabled": true,
         "visible": true,
         "type": "webview",
@@ -97,7 +97,7 @@
       {
         "id": "umrah",
         "title": "Umrah",
-        "icon": "umrah",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/umrah.xml",
         "enabled": true,
         "visible": true,
         "type": "webview",
@@ -108,7 +108,7 @@
       {
         "id": "halal",
         "title": "Halal",
-        "icon": "halal",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/halal.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -119,7 +119,7 @@
       {
         "id": "news",
         "title": "News",
-        "icon": "icon_news",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/news.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -130,7 +130,7 @@
       {
         "id": "quiz",
         "title": "Quiz",
-        "icon": "quiz",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/quiz.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -142,7 +142,7 @@
       {
         "id": "photo",
         "title": "Photo",
-        "icon": "gallery",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/gallery.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -153,7 +153,7 @@
       {
         "id": "video",
         "title": "Video",
-        "icon": "video",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/video.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -164,7 +164,7 @@
       {
         "id": "donate",
         "title": "Donate Now",
-        "icon": "donate",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/donate.xml",
         "enabled": true,
         "visible": true,
         "type": "webview",
@@ -175,7 +175,7 @@
       {
         "id": "dua",
         "title": "Dua",
-        "icon": "palms",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/palms.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -187,7 +187,7 @@
       {
         "id": "prayer_guide",
         "title": "Prayer Guide",
-        "icon": "prayer_guide",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/prayer_guide.xml",
         "enabled": true,
         "visible": true,
         "type": "webview",
@@ -198,7 +198,7 @@
       {
         "id": "mosque",
         "title": "Mosque",
-        "icon": "icon_mosque",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/mosque.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -209,7 +209,7 @@
       {
         "id": "zakat",
         "title": "Zakat Calculator",
-        "icon": "calculator_icon",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/calculator.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -221,7 +221,7 @@
       {
         "id": "currency",
         "title": "Currency Converter",
-        "icon": "currency",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/currency.xml",
         "enabled": true,
         "visible": true,
         "type": "fragment",
@@ -233,7 +233,7 @@
       {
         "id": "games_and_puzzles",
         "title": "Games & Puzzles",
-        "icon": "games_and_puzzles",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/games_and_puzzles.xml",
         "enabled": true,
         "visible": true,
         "type": "webview",
