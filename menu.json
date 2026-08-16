@@ -229,6 +229,17 @@
         "destination": "currencyFragment",
         "span": 1,
         "analytics": "currency"
+      },
+      {
+        "id": "games_and_puzzles",
+        "title": "Games & Puzzles",
+        "icon": "games_and_puzzles",
+        "enabled": true,
+        "visible": true,
+        "type": "webview",
+        "url": "https://m3hcoding.github.io/IslamicUnity/GamesAndPuzzles.html",
+        "span": 1,
+        "analytics": "games_and_puzzles"
       }
     ]
   },
