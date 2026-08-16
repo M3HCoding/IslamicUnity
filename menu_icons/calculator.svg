@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:aapt="http://schemas.android.com/aapt" width="512dp" height="512dp" viewportWidth="512" viewportHeight="512">
+	<path d="M110,30L402,30A80,80 0,0 1,482 110L482,402A80,80 0,0 1,402 482L110,482A80,80 0,0 1,30 402L30,110A80,80 0,0 1,110 30z">
+		<aapt:attr name="fill">
+			<gradient startX="30" startY="30" endX="482" endY="482" type="linear">
+				<item offset="0" color="#FF8FB6D8"/>
+				<item offset="1" color="#FF2A56C6"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M100,70L412,70A30,30 0,0 1,442 100L442,130A30,30 0,0 1,412 160L100,160A30,30 0,0 1,70 130L70,100A30,30 0,0 1,100 70z">
+		<aapt:attr name="fill">
+			<gradient startX="70" startY="70" endX="442" endY="70" type="linear">
+				<item offset="0" color="#FFCBB4D4"/>
+				<item offset="1" color="#FFE7E7F3"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M105,190L175,190A25,25 0,0 1,200 215L200,235A25,25 0,0 1,175 260L105,260A25,25 0,0 1,80 235L80,215A25,25 0,0 1,105 190z">
+		<aapt:attr name="fill">
+			<gradient startX="80" startY="190" endX="200" endY="260" type="linear">
+				<item offset="0" color="#FFFFFFFF"/>
+				<item offset="1" color="#FFBFC6D6"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M255,190L325,190A25,25 0,0 1,350 215L350,235A25,25 0,0 1,325 260L255,260A25,25 0,0 1,230 235L230,215A25,25 0,0 1,255 190z">
+		<aapt:attr name="fill">
+			<gradient startX="230" startY="190" endX="350" endY="260" type="linear">
+				<item offset="0" color="#FFFFFFFF"/>
+				<item offset="1" color="#FFBFC6D6"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M105,280L175,280A25,25 0,0 1,200 305L200,325A25,25 0,0 1,175 350L105,350A25,25 0,0 1,80 325L80,305A25,25 0,0 1,105 280z">
+		<aapt:attr name="fill">
+			<gradient startX="80" startY="280" endX="200" endY="350" type="linear">
+				<item offset="0" color="#FFFFFFFF"/>
+				<item offset="1" color="#FFBFC6D6"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M255,280L325,280A25,25 0,0 1,350 305L350,325A25,25 0,0 1,325 350L255,350A25,25 0,0 1,230 325L230,305A25,25 0,0 1,255 280z">
+		<aapt:attr name="fill">
+			<gradient startX="230" startY="280" endX="350" endY="350" type="linear">
+				<item offset="0" color="#FFFFFFFF"/>
+				<item offset="1" color="#FFBFC6D6"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M105,370L175,370A25,25 0,0 1,200 395L200,415A25,25 0,0 1,175 440L105,440A25,25 0,0 1,80 415L80,395A25,25 0,0 1,105 370z">
+		<aapt:attr name="fill">
+			<gradient startX="80" startY="370" endX="200" endY="440" type="linear">
+				<item offset="0" color="#FFFFE680"/>
+				<item offset="1" color="#FFFF9800"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M255,370L325,370A25,25 0,0 1,350 395L350,415A25,25 0,0 1,325 440L255,440A25,25 0,0 1,230 415L230,395A25,25 0,0 1,255 370z">
+		<aapt:attr name="fill">
+			<gradient startX="230" startY="370" endX="350" endY="440" type="linear">
+				<item offset="0" color="#FFFFE680"/>
+				<item offset="1" color="#FFFF9800"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M400,190L410,190A30,30 0,0 1,440 220L440,410A30,30 0,0 1,410 440L400,440A30,30 0,0 1,370 410L370,220A30,30 0,0 1,400 190z">
+		<aapt:attr name="fill">
+			<gradient startX="370" startY="190" endX="370" endY="440" type="linear">
+				<item offset="0" color="#FFFF8A9A"/>
+				<item offset="1" color="#FFE00040"/>
+			</gradient>
+		</aapt:attr>
+	</path>
+	<path d="M391,280L419,280A6,6 0,0 1,425 286L425,286A6,6 0,0 1,419 292L391,292A6,6 0,0 1,385 286L385,286A6,6 0,0 1,391 280z" fill="#fff"/>
+	<path d="M391,310L419,310A6,6 0,0 1,425 316L425,316A6,6 0,0 1,419 322L391,322A6,6 0,0 1,385 316L385,316A6,6 0,0 1,391 310z" fill="#fff"/>
+</svg>
