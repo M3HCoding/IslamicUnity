@@ -53,7 +53,7 @@
       {
         "id": "allah_names",
         "title": "99 Names of Allah",
-        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/allah.svg",
+        "icon": "https://m3hcoding.github.io/IslamicUnity/menu_icons/allah.png",
         "enabled": true,
         "visible": true,
         "type": "fragment",
